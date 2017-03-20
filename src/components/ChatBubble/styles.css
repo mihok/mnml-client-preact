@@ -1,0 +1,27 @@
+:root {
+  --primary-blue: rgb(52, 152, 219);
+  --primary-white: rgb(240, 240, 240);
+  --padding-main: 12px;
+  --primary-navy: rgb(52, 73, 94);
+}
+
+.ChatBubble {
+  width: 70px;
+  height: 70px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: var(--primary-navy);
+  margin: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  transition: all, 0.15s ease;
+
+  &:hover {
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.22);
+  }
+}

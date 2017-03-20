@@ -11,6 +11,12 @@
   font-family: Arial;
 }
 
+.App__container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
 .App-box {
   position: fixed;
   display: flex;
