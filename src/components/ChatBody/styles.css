@@ -1,0 +1,14 @@
+:root {
+  --primary-blue: rgb(52, 152, 219);
+  --primary-white: rgb(240, 240, 240);
+  --padding-main: 12px;
+}
+
+
+.ChatBody-box {
+  display: flex;
+  flex-direction: column;
+  background: var(--primary-white);
+  flex-grow: 1;
+  padding: var(--padding-main);
+}

@@ -1,0 +1,29 @@
+:root {
+  --primary-blue: rgb(52, 152, 219);
+  --primary-white: rgb(240, 240, 240);
+  --padding-main: 12px;
+}
+
+
+
+.App {
+  font-size: 12px;
+  font-family: Arial;
+}
+
+.App-box {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  bottom: 0;
+  right: 100px;
+  width: 260px;
+  height: 400px;
+}
+
+.App__Header-box {
+  background: var(--primary-blue);
+  color: var(--primary-white);
+  padding: var(--padding-main);
+
+}
