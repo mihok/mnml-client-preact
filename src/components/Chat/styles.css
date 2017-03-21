@@ -27,9 +27,18 @@
   overflow-y: scroll;
 }
 
+.Chat__Form {
+  display: flex;
+  min-height: 40px;
+  margin: var(--padding-main);
+  background: white;
+
+}
+
 .Chat__Input-box {
   padding: var(--padding-main);
   outline: 0;
   border: 1px solid #efefef;
+  flex-grow: 1;
 
 }

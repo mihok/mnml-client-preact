@@ -5,7 +5,6 @@ import ChatBubble from '../ChatBubble/';
 import dummy from '../../utils/dummy.js/';
 
 class App extends Component {
-
   state = {
     chatStyle: 'box',
     chatOpen: true ,
@@ -14,7 +13,7 @@ class App extends Component {
   }
 
 
-  // event handler methods
+  // -- Event Handlers -- //
 
   toggleChat = (bool) => {
     this.setState({chatOpen: bool})
@@ -30,7 +29,14 @@ class App extends Component {
     window.App = this;
   }
 
-  // Render Methods (Cleans up actual app component render)
+  // -- Message Methods -- //
+
+  sendMessage = (e) => {
+    e.preventDefault();
+    console.log('message sent');
+  }
+
+  // -- Render Methods -> Component Pieces -- //
 
   renderClosedChat = () => (
     <ChatBubble toggleChat={this.toggleChat} />
@@ -43,6 +49,7 @@ class App extends Component {
       messages={this.state.messages}
       textBox={this.state.textBox}
       handleInput={this.handleInput}
+      sendMessage={this.sendMessage}
     />
   )
 
@@ -50,6 +57,7 @@ class App extends Component {
     this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat()
   )
 
+  // -- Component Return -- //
 
   render () {
     const { chatStyle, chatOpen } = this.state

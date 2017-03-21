@@ -32,12 +32,14 @@ const Chat = props => {
       </div>
 
 
-      <input
-        class={`Chat__Input-${chatStyle}`}
-        placeholder="Type Here"
-        onChange={handleInput}
-        value={textBox}
-      />
+      <form class={`Chat__Form`} onSubmit={props.sendMessage}>
+        <input
+          class={`Chat__Input-${chatStyle}`}
+          placeholder="Type Here"
+          onChange={handleInput}
+          value={textBox}
+        />
+      </form>
 
     </section>
   )
