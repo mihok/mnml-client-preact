@@ -9,7 +9,8 @@ class App extends Component {
   state = {
     chatStyle: 'box',
     chatOpen: true ,
-    messages: dummy(4, 5).messages
+    messages: dummy(4, 5).messages,
+    textBox: '',
   }
 
 
@@ -17,6 +18,12 @@ class App extends Component {
 
   toggleChat = (bool) => {
     this.setState({chatOpen: bool})
+  }
+
+  handleInput = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
   componentDidMount() {
@@ -30,7 +37,13 @@ class App extends Component {
   )
 
   renderOpenChat = () => (
-    <Chat chatStyle={this.state.chatStyle} toggleChat={this.toggleChat}/>
+    <Chat
+      chatStyle={this.state.chatStyle}
+      toggleChat={this.toggleChat}
+      messages={this.state.messages}
+      textBox={this.state.textBox}
+      handleInput={this.handleInput}
+    />
   )
 
   renderChat = () => (

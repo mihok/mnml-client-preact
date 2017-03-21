@@ -1,9 +1,17 @@
 import { h, render  } from 'preact';
 import './styles.css'
 import '../../variables.css'
+import Message from '../Message/';
 
 const Chat = props => {
-  const {chatStyle, toggleChat} = props;
+  const {chatStyle, toggleChat, messages, textBox, handleInput} = props;
+
+  const renderMessages = () => (
+    messages.map(msg => (
+      <Message> {msg.content}</Message>
+    ))
+  )
+
 
   return (
     <section class={`Chat-${chatStyle}`}>
@@ -13,9 +21,14 @@ const Chat = props => {
       </header>
 
       {/* Container for text input and reading messages */}
-      <div class={`Chat__Body-${chatStyle}`}>
-        Im the chat body
-      </div>
+      <div class={`Chat__Body-${chatStyle}`}>{renderMessages()}</div>
+
+      <input
+        class={`Chat__Input-${chatStyle}`}
+        placeholder="Type Here"
+        onChange={handleInput}
+        value={textBox}
+      />
 
     </section>
   )
