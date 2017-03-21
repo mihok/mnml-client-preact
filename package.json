@@ -5,8 +5,8 @@
   "repository": {},
   "license": "MIT",
   "scripts": {
-      "start": "./node_modules/.bin/rollup -c -w",
-      "example": "node build/server.js"
+    "start": "./node_modules/.bin/rollup -c -w",
+    "example": "node build/server.js"
   },
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.23.0",

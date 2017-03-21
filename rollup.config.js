@@ -20,7 +20,7 @@ export default {
   sourceMap: true,
   format: 'cjs',
   entry: './src/main.js',
-  dest: './build/bundle.js', 
+  dest: './build/bundle.js',
   plugins: [includePaths(includePathOptions), nodeResolve({
     jsnext: true
   }), json(), postcss({
@@ -37,7 +37,7 @@ export default {
       }],
       ["transform-class-properties"],
       ['transform-object-rest-spread']
-    ]
-    // exclude: 'node_modules/**',
+    ],
+    /* exclude: 'node_modules/**',*/
   })]
 }

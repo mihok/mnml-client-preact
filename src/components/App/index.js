@@ -2,12 +2,14 @@ import { h, render, Component } from 'preact';
 import './styles.css'
 import Chat from '../Chat/';
 import ChatBubble from '../ChatBubble/';
+import dummy from '../../utils/dummy.js/';
 
 class App extends Component {
 
   state = {
     chatStyle: 'box',
     chatOpen: true ,
+    messages: dummy(4, 5).messages
   }
 
 
@@ -41,7 +43,7 @@ class App extends Component {
 
     return (
       <div class={`App App-${chatStyle}`}>
-         {this.renderChat() }
+        {this.renderChat() }
       </div>
     )
   }

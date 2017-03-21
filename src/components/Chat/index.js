@@ -8,14 +8,14 @@ const Chat = props => {
   return (
     <section class={`Chat-${chatStyle}`}>
 
-      <header
-        class={`Chat__Header-${chatStyle}`}
-        onClick={() => toggleChat(false)}
-      >
+      <header class={`Chat__Header-${chatStyle}`} onClick={() => toggleChat(false)}>
         Chat with John
       </header>
 
-      <div class={`Chat__Body-${chatStyle}`}>Im the chat body</div>
+      {/* Container for text input and reading messages */}
+      <div class={`Chat__Body-${chatStyle}`}>
+        Im the chat body
+      </div>
 
     </section>
   )
