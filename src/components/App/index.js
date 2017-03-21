@@ -1,56 +1,47 @@
 import { h, render, Component } from 'preact';
 import './styles.css'
-import ChatBody from '../ChatBody/';
+import Chat from '../Chat/';
 import ChatBubble from '../ChatBubble/';
 
 class App extends Component {
+
   state = {
     chatStyle: 'box',
-    chatOpen: false,
+    chatOpen: true ,
   }
 
 
   // event handler methods
 
-  openChat = () => {
-    this.setState({ chatOpen: true })
+  toggleChat = (bool) => {
+    this.setState({chatOpen: bool})
   }
 
-  closeChat = () => {
-    this.setState({ chatOpen: false })
+  componentDidMount() {
+    window.App = this;
   }
 
   // Render Methods (Cleans up actual app component render)
 
-  renderClosedChat = () => {
-    return (
-      <ChatBubble openChat={this.openChat} />
-    )
-  }
+  renderClosedChat = () => (
+    <ChatBubble toggleChat={this.toggleChat} />
+  )
 
-  renderOpenChat = () => {
-    return (
-      <div class="App__container">
-        <header class={`App__Header-${this.state.chatStyle}`} onClick={this.closeChat}>
-          Chat with John from Acme Corp
-        </header>
+  renderOpenChat = () => (
+    <Chat chatStyle={this.state.chatStyle} toggleChat={this.toggleChat}/>
+  )
 
-        <ChatBody chatStyle={this.state.chatStyle} />
+  renderChat = () => (
+    this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat()
+  )
 
-      </div>
-    )
-  }
-
-  renderChat = () => {
-    return this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat()
-  }
 
   render () {
-    const { chatStyle } = this.state
+    const { chatStyle, chatOpen } = this.state
 
     return (
       <div class={`App App-${chatStyle}`}>
-        { this.renderChat() }
+         {this.renderChat() }
       </div>
     )
   }

@@ -5,7 +5,6 @@
 }
 
 
-
 .App {
   font-size: 12px;
   font-family: Arial;
@@ -25,11 +24,4 @@
   right: 100px;
   width: 260px;
   height: 400px;
-}
-
-.App__Header-box {
-  background: var(--primary-blue);
-  color: var(--primary-white);
-  padding: var(--padding-main);
-
 }

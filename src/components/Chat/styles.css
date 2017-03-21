@@ -5,10 +5,22 @@
 }
 
 
-.ChatBody-box {
+.Chat-box {
   display: flex;
   flex-direction: column;
   background: var(--primary-white);
+  flex-grow: 1;
+}
+
+.Chat__Header-box {
+  background: var(--primary-blue);
+  color: var(--primary-white);
+  padding: var(--padding-main);
+  cursor: pointer;
+}
+
+.Chat__Body-box {
+  display: flex;
   flex-grow: 1;
   padding: var(--padding-main);
 }

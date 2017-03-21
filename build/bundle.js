@@ -1135,18 +1135,35 @@ function render(vnode, parent, merge) {
   return diff(merge, vnode, {}, false, parent);
 }
 
-__$styleInject(".App{font-size:12px;font-family:Arial}.App__container{flex-grow:1}.App-box,.App__container{display:flex;flex-direction:column}.App-box{position:fixed;bottom:0;right:100px;width:260px;height:400px}.App__Header-box{background:#3498db;color:#f0f0f0;padding:12px}", undefined);
+__$styleInject(".App{font-size:12px;font-family:Arial}.App__container{flex-grow:1}.App-box,.App__container{display:flex;flex-direction:column}.App-box{position:fixed;bottom:0;right:100px;width:260px;height:400px}", undefined);
 
-__$styleInject(".ChatBody-box{display:flex;flex-direction:column;background:#f0f0f0;flex-grow:1;padding:12px}", undefined);
+__$styleInject(".Chat-box{display:flex;flex-direction:column;background:#f0f0f0;flex-grow:1}.Chat__Header-box{background:#3498db;color:#f0f0f0;padding:12px;cursor:pointer}.Chat__Body-box{display:flex;flex-grow:1;padding:12px}", undefined);
 
 __$styleInject("", undefined);
 
-var ChatBody = function ChatBody(props) {
+var Chat = function Chat(props) {
+  var chatStyle = props.chatStyle,
+      toggleChat = props.toggleChat;
+
 
   return h(
     'section',
-    { 'class': 'ChatBody-' + props.chatStyle },
-    'Im the chat body'
+    { 'class': 'Chat-' + chatStyle },
+    h(
+      'header',
+      {
+        'class': 'Chat__Header-' + chatStyle,
+        onClick: function onClick() {
+          return toggleChat(false);
+        }
+      },
+      'Chat with John'
+    ),
+    h(
+      'div',
+      { 'class': 'Chat__Body-' + chatStyle },
+      'Im the chat body'
+    )
   );
 };
 
@@ -1155,7 +1172,9 @@ __$styleInject(".ChatBubble{width:70px;height:70px;position:fixed;bottom:0;right
 var ChatBubble = function ChatBubble(props) {
   return h(
     'div',
-    { onClick: props.openChat, 'class': 'ChatBubble' },
+    { onClick: function onClick() {
+        return props.toggleChat(true);
+      }, 'class': 'ChatBubble' },
     'open chat '
   );
 };
@@ -1176,24 +1195,13 @@ var App = function (_Component) {
 
     return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       chatStyle: 'box',
-      chatOpen: false
-    }, _this.openChat = function () {
-      _this.setState({ chatOpen: true });
-    }, _this.closeChat = function () {
-      _this.setState({ chatOpen: false });
+      chatOpen: true
+    }, _this.toggleChat = function (bool) {
+      _this.setState({ chatOpen: bool });
     }, _this.renderClosedChat = function () {
-      return h(ChatBubble, { openChat: _this.openChat });
+      return h(ChatBubble, { toggleChat: _this.toggleChat });
     }, _this.renderOpenChat = function () {
-      return h(
-        'div',
-        { 'class': 'App__container' },
-        h(
-          'header',
-          { 'class': 'App__Header-' + _this.state.chatStyle, onClick: _this.closeChat },
-          'Chat with John from Acme Corp'
-        ),
-        h(ChatBody, { chatStyle: _this.state.chatStyle })
-      );
+      return h(Chat, { chatStyle: _this.state.chatStyle, toggleChat: _this.toggleChat });
     }, _this.renderChat = function () {
       return _this.state.chatOpen ? _this.renderOpenChat() : _this.renderClosedChat();
     }, _temp), possibleConstructorReturn(_this, _ret);
@@ -1201,12 +1209,20 @@ var App = function (_Component) {
 
   // event handler methods
 
-  // Render Methods (Cleans up actual app component render)
-
   createClass(App, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      window.App = this;
+    }
+
+    // Render Methods (Cleans up actual app component render)
+
+  }, {
     key: 'render',
     value: function render$$1() {
-      var chatStyle = this.state.chatStyle;
+      var _state = this.state,
+          chatStyle = _state.chatStyle,
+          chatOpen = _state.chatOpen;
 
 
       return h(

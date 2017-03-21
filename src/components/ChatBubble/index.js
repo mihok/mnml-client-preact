@@ -3,7 +3,7 @@ import './styles.css'
 
 const ChatBubble = props => {
   return (
-    <div onClick={props.openChat} class="ChatBubble">open chat </div>
+    <div onClick={() => props.toggleChat(true)} class="ChatBubble">open chat </div>
   )
 }
 
