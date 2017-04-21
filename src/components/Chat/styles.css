@@ -17,6 +17,40 @@
   color: var(--primary-white);
   padding: var(--padding-main);
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  max-height: 20px;
+  min-height: 20px;
+}
+
+.Chat__OperatorName-box {
+  align-self: center;
+  
+}
+
+.Chat__CloseBtn-box {
+  background: none;
+  border: 0;
+  color: white;
+  font-size: 14px;
+  align-self: center;
+  outline: none;
+  background: rgba(236, 240, 241, 0.2);
+  cursor: pointer;
+  border-radius: 40px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  line-height: 1;
+  padding-top: 0;
+
+  &:hover {
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.12);
+  }
+
+  &:active {
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0);
+  }
 }
 
 .Chat__Body-box {

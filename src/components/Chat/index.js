@@ -1,36 +1,34 @@
-import { h, render  } from 'preact';
-import './styles.css'
-import '../../variables.css'
-import Message from '../Message/';
+import { h, render } from "preact";
+import "./styles.css";
+import "../../variables.css";
+import Message from "../Message/";
 
 const Chat = props => {
-
-  const { chatStyle, toggleChat, messages,
-          textBox, handleInput } = props;
-
+  const { chatStyle, toggleChat, messages, textBox, handleInput } = props;
 
   const renderMessages = () => {
     return messages.map(msg => (
       <Message type={msg.author}> {msg.content}</Message>
-    ))
-  }
+    ));
+  };
 
   return (
     <section class={`Chat-${chatStyle}`}>
 
-      <header
-        class={`Chat__Header-${chatStyle}`}
-        onClick={ () => toggleChat(false) }
-      >
-        Chat with John
+      <header class={`Chat__Header-${chatStyle}`}>
+        <div class={`Chat__OperatorName-${chatStyle}`}>Chat with John</div>
+        <button
+          class={`Chat__CloseBtn-${chatStyle}`}
+          onClick={() => toggleChat(false)}
+        >
+          x
+        </button>
       </header>
-
 
       {/* Container for text input and reading messages */}
       <div class={`Chat__Body-${chatStyle}`}>
-        { renderMessages() }
+        {renderMessages()}
       </div>
-
 
       <form class={`Chat__Form`} onSubmit={props.sendMessage}>
         <input
@@ -42,7 +40,7 @@ const Chat = props => {
       </form>
 
     </section>
-  )
-}
+  );
+};
 
-export default Chat
+export default Chat;
