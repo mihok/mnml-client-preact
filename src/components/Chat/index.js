@@ -1,46 +1,68 @@
-import { h, render } from "preact";
+import { h, render, Component } from "preact";
 import "./styles.css";
 import "../../variables.css";
 import Message from "../Message/";
 
-const Chat = props => {
-  const { chatStyle, toggleChat, messages, textBox, handleInput } = props;
+class Chat extends Component {
+  componentDidMount() {
+    this.scrollToBottom();
+  }
 
-  const renderMessages = () => {
-    return messages.map(msg => (
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom = () => {
+    this.container.scrollTop = this.container.scrollHeight;
+  };
+
+  renderMessages = () => {
+    return this.props.messages.map(msg => (
       <Message type={msg.author}> {msg.content}</Message>
     ));
   };
 
-  return (
-    <section class={`Chat-${chatStyle}`}>
+  render() {
+    const {
+      chatStyle,
+      toggleChat,
+      messages,
+      textBox,
+      handleInput,
+      sendMessage
+    } = this.props;
 
-      <header class={`Chat__Header-${chatStyle}`}>
-        <div class={`Chat__OperatorName-${chatStyle}`}>Chat with John</div>
-        <button
-          class={`Chat__CloseBtn-${chatStyle}`}
-          onClick={() => toggleChat(false)}
-        >
-          x
-        </button>
-      </header>
+    return (
+      <section class={`Chat-${chatStyle}`}>
 
-      {/* Container for text input and reading messages */}
-      <div class={`Chat__Body-${chatStyle}`}>
-        {renderMessages()}
-      </div>
+        <header class={`Chat__Header-${chatStyle}`}>
+          <div class={`Chat__OperatorName-${chatStyle}`}>Chat with John</div>
+          <button
+            class={`Chat__CloseBtn-${chatStyle}`}
+            onClick={() => toggleChat(false)}
+          >
+            x
+          </button>
+        </header>
 
-      <form class={`Chat__Form`} onSubmit={props.sendMessage}>
-        <input
-          class={`Chat__Input-${chatStyle}`}
-          placeholder="Type Here"
-          onChange={handleInput}
-          value={textBox}
-        />
-      </form>
+        {/* Container for text input and reading messages */}
+        <div class={`Chat__Body-${chatStyle}`} ref={c => this.container = c}>
+          {this.renderMessages()}
+        </div>
 
-    </section>
-  );
-};
+        <form class={`Chat__Form`} onSubmit={sendMessage}>
+          <input
+            class={`Chat__Input-${chatStyle}`}
+            placeholder="Type Here"
+            onChange={e => handleInput(e)}
+            name="messages"
+            value={textBox}
+          />
+        </form>
+
+      </section>
+    );
+  }
+}
 
 export default Chat;
