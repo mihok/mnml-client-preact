@@ -367,6 +367,34 @@ var possibleConstructorReturn = function (self, call) {
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var toConsumableArray = function (arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+    return arr2;
+  } else {
+    return Array.from(arr);
+  }
+};
+
 function removeNode(node) {
 	var p = node.parentNode;
 	if (p) p.removeChild(node);
@@ -1137,35 +1165,134 @@ function render(vnode, parent, merge) {
 
 __$styleInject(".App{font-size:12px;font-family:Arial}.App__container{flex-grow:1}.App-box,.App__container{display:flex;flex-direction:column}.App-box{position:fixed;bottom:0;right:100px;width:260px;height:400px}", undefined);
 
-__$styleInject(".Chat-box{display:flex;flex-direction:column;background:#f0f0f0;flex-grow:1}.Chat__Header-box{background:#3498db;color:#f0f0f0;padding:12px;cursor:pointer}.Chat__Body-box{display:flex;flex-grow:1;padding:12px}", undefined);
+__$styleInject(".Chat-box{display:flex;flex-direction:column;background:#f0f0f0;flex-grow:1}.Chat__Header-box{background:#c7cdd1;color:#3498db;padding:12px;display:flex;justify-content:space-between;max-height:20px;min-height:20px}.Chat__OperatorName-box{align-self:center}.Chat__CloseBtn-box{background:none;border:0;color:#fff;font-size:14px;align-self:center;outline:none;background:rgba(236, 240, 241, .2);cursor:pointer;border-radius:40px;width:24px;height:24px;border-radius:50%;line-height:1;padding-top:0}.Chat__CloseBtn-box:hover{box-shadow:1px 1px 4px rgba(0, 0, 0, .12)}.Chat__CloseBtn-box:active{box-shadow:1px 1px 4px transparent}.Chat__Body-box{display:flex;flex-grow:1;padding:12px;flex-direction:column;overflow-y:scroll}.Chat__Form{display:flex;min-height:40px;background:#fff}.Chat__Input-box{padding:12px;outline:0;border:1px solid #efefef;flex-grow:1}", undefined);
 
 __$styleInject("", undefined);
 
-var Chat = function Chat(props) {
-  var chatStyle = props.chatStyle,
-      toggleChat = props.toggleChat;
+__$styleInject(".Message__client{background:#3498db;align-self:flex-end}.Message__client,.Message__operator{color:#fff;padding:8px;padding:.5rem;margin:8px;margin:.5rem;border-radius:2px;font-size:12px;max-width:65%;letter-spacing:1px}.Message__operator{background:#e67e22;align-self:flex-start}", undefined);
 
+var Message = function Message(props) {
+  var msgClass = function msgClass() {
+    return props.type === "operator" ? "Message__operator" : "Message__client";
+  };
 
+  console.log(props);
+  // incoming props, mesage.content is an array.
   return h(
-    'section',
-    { 'class': 'Chat-' + chatStyle },
-    h(
-      'header',
-      {
-        'class': 'Chat__Header-' + chatStyle,
-        onClick: function onClick() {
-          return toggleChat(false);
-        }
-      },
-      'Chat with John'
-    ),
-    h(
-      'div',
-      { 'class': 'Chat__Body-' + chatStyle },
-      'Im the chat body'
-    )
+    "div",
+    { className: msgClass() },
+    props.content.map(function (msg) {
+      return h(
+        "div",
+        null,
+        msg
+      );
+    })
   );
 };
+
+/**
+ * Main chat component handles displaying chat messages and passes
+ * functions to the input to send messages
+ * Has scroll to bottom functionality for keeping window scoll at bottom of the chat.
+ * Needs to be a class based component in order to have that functionality ^
+ */
+
+var Chat = function (_Component) {
+  inherits(Chat, _Component);
+
+  function Chat() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    classCallCheck(this, Chat);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Chat.__proto__ || Object.getPrototypeOf(Chat)).call.apply(_ref, [this].concat(args))), _this), _this.scrollToBottom = function () {
+      _this.container.scrollTop = _this.container.scrollHeight;
+    }, _this.renderMessages = function () {
+      return _this.props.messages.map(function (msg) {
+        console.log('incoming message is', msg);
+        return h(Message, { type: msg.author, content: msg.content }); // msg.content is an array!
+      });
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  createClass(Chat, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.scrollToBottom();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.scrollToBottom();
+    }
+  }, {
+    key: "render",
+    value: function render$$1() {
+      var _this2 = this;
+
+      var _props = this.props,
+          chatStyle = _props.chatStyle,
+          toggleChat = _props.toggleChat,
+          messages = _props.messages,
+          textBox = _props.textBox,
+          handleInput = _props.handleInput,
+          sendMessage = _props.sendMessage;
+
+
+      return h(
+        "section",
+        { "class": "Chat-" + chatStyle },
+        h(
+          "header",
+          { "class": "Chat__Header-" + chatStyle },
+          h(
+            "div",
+            { "class": "Chat__OperatorName-" + chatStyle },
+            "Chat with John"
+          ),
+          h(
+            "button",
+            {
+              "class": "Chat__CloseBtn-" + chatStyle,
+              onClick: function onClick() {
+                return toggleChat(false);
+              }
+            },
+            "x"
+          )
+        ),
+        h(
+          "div",
+          { "class": "Chat__Body-" + chatStyle, ref: function ref(c) {
+              return _this2.container = c;
+            } },
+          this.renderMessages()
+        ),
+        h(
+          "form",
+          { "class": "Chat__Form", onSubmit: sendMessage },
+          h("input", {
+            "class": "Chat__Input-" + chatStyle,
+            placeholder: "Type Here",
+            onChange: function onChange(e) {
+              return handleInput(e);
+            },
+            name: "messages",
+            value: textBox
+          })
+        )
+      );
+    }
+  }]);
+  return Chat;
+}(Component);
 
 __$styleInject(".ChatBubble{width:70px;height:70px;position:fixed;bottom:0;right:0;background:#34495e;margin:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;color:#fff;cursor:pointer;transition:all,.15s ease}.ChatBubble:hover{box-shadow:2px 2px 3px rgba(0, 0, 0, .22)}", undefined);
 
@@ -1178,6 +1305,79 @@ var ChatBubble = function ChatBubble(props) {
     'open chat '
   );
 };
+
+/**
+ * This file generates dummy data for the chats array and messages array
+ * to be used in the chat reducer.
+ * makeDummy is the main function that returns `x` chats and `y` messages in a single object
+ * TODO: create the operator class and output it in the makeDummy fn.
+*/
+
+// get a random author type for generating operator and client message types
+function generateUserType(chatSessionId) {
+  var rnd = Math.floor(Math.random() * 2) + 1;
+  switch (rnd) {
+    case 1:
+      return 'operator';
+    case 2:
+      return 'client.' + chatSessionId;
+    default:
+      return 'client.' + chatSessionId;
+  }
+}
+
+var Message$2 = function Message(chatSessionId) {
+  classCallCheck(this, Message);
+  this.author = null;
+  this.chat = null;
+  this.content = [faker.lorem.sentence(), faker.lorem.sentence()];
+  this.timestamp = faker.date.recent();
+
+  this.author = generateUserType(chatSessionId);
+  this.chat = chatSessionId;
+};
+
+var Chat$2 = function Chat(chatSessionId, clientId, operator) {
+  classCallCheck(this, Chat);
+  this.client = {
+    id: null,
+    first_name: faker.name.firstName(),
+    last_name: faker.name.lastName(),
+    name: 'site visitor'
+  };
+  this.creationTime = faker.date.recent();
+  this.updatedTime = faker.date.recent().toISOString();
+  this.id = null;
+  this.operator = null;
+  this.open = Math.random() >= 0.5;
+
+  this.id = chatSessionId;
+  this.client.id = clientId;
+  this.operator = operator;
+};
+
+// creates one chatSession and multiple messages for that session
+// some messages belong to a client, some to a dummy operator.
+
+
+function makeDummy(numDummy, numMessages) {
+  var chatSessions = [];
+  var messages = [];
+  var rndNumMessages = Math.floor(Math.random() * (numMessages - (0 + 1))) + 1;
+
+  for (var i = 0; i < numDummy; i += 1) {
+    var chatSessionId = faker.random.uuid();
+    var clientId = faker.random.uuid();
+    chatSessions.push(new Chat$2(chatSessionId, clientId, 'Joe'));
+
+    // create the messages unique to the above created session.
+    for (var j = 0; j < rndNumMessages; j += 1) {
+      messages.push(new Message$2(chatSessionId, clientId));
+    }
+  }
+
+  return { chatSessions: chatSessions, messages: messages };
+}
 
 var App = function (_Component) {
   inherits(App, _Component);
@@ -1194,31 +1394,68 @@ var App = function (_Component) {
     }
 
     return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      chatStyle: 'box',
-      chatOpen: true
+      chatStyle: "box",
+      chatOpen: true,
+      messages: makeDummy(4, 5).messages,
+      textBox: ""
     }, _this.toggleChat = function (bool) {
       _this.setState({ chatOpen: bool });
+    }, _this.handleInput = function (e) {
+      _this.setState({ textBox: e.target.value });
+    }, _this.sendMessage = function (e) {
+      e.preventDefault();
+      if (_this.state.textBox === "") return;
+
+      // TODO: combine last message if it's by the same author
+
+      _this.setState({
+        messages: [].concat(toConsumableArray(_this.state.messages), [{ content: [_this.state.textBox] }]),
+        textBox: ""
+      });
+    }, _this.combineLastMessage = function (msg) {
+      if (msg.author !== previousMsg.author) return;
+      var messages = _this.state.messages;
+      var lastMessage = messages[messages[messages.length - 1]];
+
+      previousMsg.content.concat(msg.content);
+      return previousMsg;
     }, _this.renderClosedChat = function () {
       return h(ChatBubble, { toggleChat: _this.toggleChat });
     }, _this.renderOpenChat = function () {
-      return h(Chat, { chatStyle: _this.state.chatStyle, toggleChat: _this.toggleChat });
+      return h(Chat, {
+        chatStyle: _this.state.chatStyle,
+        toggleChat: _this.toggleChat,
+        messages: _this.state.messages,
+        textBox: _this.state.textBox,
+        handleInput: _this.handleInput,
+        sendMessage: _this.sendMessage
+      });
     }, _this.renderChat = function () {
       return _this.state.chatOpen ? _this.renderOpenChat() : _this.renderClosedChat();
     }, _temp), possibleConstructorReturn(_this, _ret);
   }
 
-  // event handler methods
-
   createClass(App, [{
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
-      window.App = this;
+      window.jam = this;
     }
 
-    // Render Methods (Cleans up actual app component render)
+    // -- Event Handlers -- //
+
+    // -- Message Methods -- //
+
+    // if the last message was from the same author, combine 'em.
+
+
+    // -- Render Methods -> Component Pieces -- //
 
   }, {
-    key: 'render',
+    key: "render",
+
+
+    // -- Component Return -- //
+
     value: function render$$1() {
       var _state = this.state,
           chatStyle = _state.chatStyle,
@@ -1226,8 +1463,8 @@ var App = function (_Component) {
 
 
       return h(
-        'div',
-        { 'class': 'App App-' + chatStyle },
+        "div",
+        { "class": "App App-" + chatStyle },
         this.renderChat()
       );
     }
@@ -1235,9 +1472,6 @@ var App = function (_Component) {
   return App;
 }(Component);
 
-console.log('supu');
-
-// Render the app
 var mount = document.getElementById('mount');
 
 render(h(App, null), mount);

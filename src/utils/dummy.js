@@ -24,7 +24,7 @@ function generateUserType (chatSessionId) {
 class Message {
   author = null
   chat = null
-  content = faker.lorem.sentence()
+  content = [faker.lorem.sentence(), faker.lorem.sentence()]
   timestamp = faker.date.recent()
 
   constructor (chatSessionId) {

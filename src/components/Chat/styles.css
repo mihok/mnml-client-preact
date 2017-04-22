@@ -60,7 +60,6 @@
 .Chat__Form {
   display: flex;
   min-height: 40px;
-  margin: var(--padding-main);
   background: white;
 }
 

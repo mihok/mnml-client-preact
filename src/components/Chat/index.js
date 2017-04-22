@@ -1,3 +1,10 @@
+/**
+ * Main chat component handles displaying chat messages and passes
+ * functions to the input to send messages
+ * Has scroll to bottom functionality for keeping window scoll at bottom of the chat.
+ * Needs to be a class based component in order to have that functionality ^
+ */
+
 import { h, render, Component } from "preact";
 import "./styles.css";
 import "../../variables.css";
@@ -17,9 +24,10 @@ class Chat extends Component {
   };
 
   renderMessages = () => {
-    return this.props.messages.map(msg => (
-      <Message type={msg.author}> {msg.content}</Message>
-    ));
+    return this.props.messages.map(msg => {
+      console.log('incoming message is', msg)
+      return <Message type={msg.author} content={msg.content}></Message> // msg.content is an array!
+    });
   };
 
   render() {
