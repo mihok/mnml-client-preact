@@ -1,9 +1,9 @@
 :root {
   --primary-blue: rgb(52, 152, 219);
   --primary-white: rgb(240, 240, 240);
+  --primary-grey: rgb(199, 205, 209);
   --padding-main: 12px;
 }
-
 
 .Chat-box {
   display: flex;
@@ -13,10 +13,9 @@
 }
 
 .Chat__Header-box {
-  background: var(--primary-blue);
-  color: var(--primary-white);
+  background: var(--primary-grey);
+  color: var(--primary-blue);
   padding: var(--padding-main);
-  cursor: pointer;
   display: flex;
   justify-content: space-between;
   max-height: 20px;
@@ -25,7 +24,6 @@
 
 .Chat__OperatorName-box {
   align-self: center;
-  
 }
 
 .Chat__CloseBtn-box {
@@ -43,11 +41,9 @@
   border-radius: 50%;
   line-height: 1;
   padding-top: 0;
-
   &:hover {
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.12);
   }
-
   &:active {
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0);
   }
@@ -66,7 +62,6 @@
   min-height: 40px;
   margin: var(--padding-main);
   background: white;
-
 }
 
 .Chat__Input-box {
@@ -74,5 +69,4 @@
   outline: 0;
   border: 1px solid #efefef;
   flex-grow: 1;
-
 }

@@ -26,6 +26,7 @@ class App extends Component {
 
   sendMessage = e => {
     e.preventDefault();
+    if (this.state.textBox === "") return
     this.setState({
       messages: [...this.state.messages, { content: this.state.textBox }],
       textBox: ""
