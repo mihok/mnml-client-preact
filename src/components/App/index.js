@@ -3,12 +3,12 @@ import "./styles.css";
 import Chat from "../Chat/";
 import ChatBubble from "../ChatBubble/";
 import dummy from "../../utils/dummy.js/";
-// import io from "socket.io-client";
+/* import io from "socket.io-client";*/
+// NOTE: SOCKET IS LOADED IN THE EXAMPLE SITE BECASUE ROLLUP IS FAILING AT IMPORTING IO
+// SAD sAD FAIL SAD ADAAA SAD
 
-//- constants and setup -//
 const socketPath = "http://localhost:8000";
 
-//- React Component -//
 class App extends Component {
   state = {
     chatStyle: "box",
@@ -19,9 +19,15 @@ class App extends Component {
 
   componentDidMount() {
     window.jam = this
+    this.socket = io.connect(socketPath, {
+      reconnectionAttempts: 10,
+      query: 'type=client',
+    });
   }
 
-  // -- Event Handlers -- //
+  // ====================================
+  // Event Handlers
+  // ====================================
 
   toggleChat = bool => {
     this.setState({ chatOpen: bool });
@@ -31,18 +37,21 @@ class App extends Component {
     this.setState({ textBox: e.target.value });
   };
 
-  // -- Message Methods -- //
+  // ====================================
+  //  Message Methods
+  // ====================================
 
+  // TODO: combine last message if it's by the same author
   sendMessage = e => {
     e.preventDefault();
     if (this.state.textBox === "") return;
-
-    // TODO: combine last message if it's by the same author
+    this.socket.emit('client:message', this.state.textBox);
 
     this.setState({
       messages: [...this.state.messages, { content: [this.state.textBox] }],
       textBox: ""
     });
+
   };
 
   // if the last message was from the same author, combine 'em.

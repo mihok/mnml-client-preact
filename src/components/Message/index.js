@@ -5,7 +5,6 @@ const Message = props => {
   const msgClass = () =>
     (props.type === "operator" ? "Message__operator" : "Message__client");
 
-  console.log(props)
   // incoming props, mesage.content is an array.
   return (
     <div className={msgClass()}>

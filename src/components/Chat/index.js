@@ -25,7 +25,6 @@ class Chat extends Component {
 
   renderMessages = () => {
     return this.props.messages.map(msg => {
-      console.log('incoming message is', msg)
       return <Message type={msg.author} content={msg.content}></Message> // msg.content is an array!
     });
   };

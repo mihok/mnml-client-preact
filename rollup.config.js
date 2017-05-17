@@ -21,13 +21,15 @@ export default {
   format: 'cjs',
   entry: './src/main.js',
   dest: './build/bundle.js',
-  plugins: [includePaths(includePathOptions), nodeResolve({
-    jsnext: true
-  }), json(), postcss({
-    extensions: ['.css'],
-    plugins: [simplevars(), nested(), cssnano(), cssnext({
-      warnForDuplicates: false
-    })]
+  plugins: [
+    includePaths(includePathOptions),
+    nodeResolve({jsnext: true}),
+    json(),
+    postcss({
+      extensions: ['.css'],
+      plugins: [simplevars(), nested(), cssnano(), cssnext({
+        warnForDuplicates: false
+      })]
   }), babel({
     babelrc: false,
     presets: ["es2015-rollup"],
