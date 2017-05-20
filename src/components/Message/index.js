@@ -31,7 +31,7 @@ const Message = props => {
   }
   // incoming props, mesage.content is an array.
   return (
-    <li>
+    <li class={`Message__box__${props.theme}`}>
       {message}
     </li>
   );

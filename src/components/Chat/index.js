@@ -10,6 +10,7 @@ import "./styles.css";
 import "../../variables.css";
 import Message from "../Message/";
 import theme from "../ThemeProvider/themeHOC";
+import Input from "../Input/index";
 
 class Chat extends Component {
   componentDidMount() {
@@ -49,7 +50,7 @@ class Chat extends Component {
             class={`Chat__CloseBtn__${theme}`}
             onClick={() => toggleChat(false)}
           >
-          x  
+            x{" "}
           </button>
         </header>
 
@@ -58,6 +59,13 @@ class Chat extends Component {
           {this.renderMessages()}
         </ul>
 
+        <Input
+          sendMessage={sendMessage}
+          textBox={textBox}
+          handleInput={handleInput}
+        />
+
+        {/*
         <form class={`Chat__Form`} onSubmit={sendMessage}>
           <input
             class={`Chat__Input__${theme}`}
@@ -67,6 +75,7 @@ class Chat extends Component {
             value={textBox}
           />
         </form>
+        */}
 
       </section>
     );

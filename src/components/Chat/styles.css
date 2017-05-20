@@ -59,15 +59,43 @@
   margin: 0;
 }
 
-.Chat__Form {
-  display: flex;
-  min-height: 40px;
-  background: white;
+/* ======= Float Style ======== */
+
+.Chat__Float {
+  position: absolute;
+  right: 30px;
+  bottom: 60px;
+  background-color: transparent;
 }
 
-.Chat__Input__Messenger {
-  padding: var(--padding-main);
-  outline: 0;
-  border: 1px solid #efefef;
+.Chat__Body__Float {
+  display: block;
+  width: 280px;
+  height: 80vh;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
   flex-grow: 1;
+  justify-content: flex-end;
+  padding-bottom: 64px; /* Push last message down; gives <Input /> room to breathe */
+}
+
+
+.Chat__CloseBtn__Float {
+  position: absolute;
+  bottom: -48px;
+  /* right: -48px; */
+  display: block;
+  width: 42px;
+  height: 42px;
+  padding: 11px 5px 11px 6px;
+  box-sizing: border-box;
+  box-shadow: #dddddd 1px 1px 8px 0;
+  border-radius: 21px;
+  font-size: 13px;
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+  background-color: #72a0e5;
+  border: 0;
 }

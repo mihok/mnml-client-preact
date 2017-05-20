@@ -12,11 +12,10 @@ const socketPath = "http://localhost:8000";
 
 class App extends Component {
   state = {
-    chatStyle: "box", // NOTE: deprecated
     chatOpen: true,
     messages: dummy(4, 5).messages,
     textBox: "",
-    theme: "Messenger" // wrapped with theme provider + HOC
+    theme: "Float" // wrapped with theme provider + HOC
   };
 
   componentDidMount() {

@@ -1,0 +1,46 @@
+:root {
+  --primary-blue: rgb(52, 152, 219);
+  --primary-white: rgb(240, 240, 240);
+  --padding-main: 12px;
+}
+
+
+/**** Messenger Style ****/
+
+.Form__Messenger {
+  display: flex;
+  min-height: 40px;
+  background: white;
+}
+
+.Input__Messenger {
+  padding: var(--padding-main);
+  outline: 0;
+  border: 1px solid #efefef;
+  flex-grow: 1;
+}
+
+
+/***** Float Style *****/
+.Input__Float {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 48px;
+  box-sizing: border-box;
+  box-shadow: #dddddd 1px 1px 8px 0;
+  border: 0;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 16px;
+  color: #222222;
+  font-size: 13px;
+  resize: none;
+  outline: 0;
+}
+
+.Input__Float:disabled {
+  background-color: #e1e1e1;
+}
