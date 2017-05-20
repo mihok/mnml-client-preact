@@ -3,6 +3,8 @@ import babel from 'rollup-plugin-babel'
 import includePaths from 'rollup-plugin-includepaths'
 import postcss from 'rollup-plugin-postcss'
 import nodeResolve from 'rollup-plugin-node-resolve'
+import image from 'rollup-plugin-image';
+
 // post css plugins:
 import simplevars from 'postcss-simple-vars'
 import nested from 'postcss-nested'
@@ -25,6 +27,7 @@ export default {
     includePaths(includePathOptions),
     nodeResolve({jsnext: true}),
     json(),
+    image(),
     postcss({
       extensions: ['.css'],
       plugins: [simplevars(), nested(), cssnano(), cssnext({
