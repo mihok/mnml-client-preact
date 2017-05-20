@@ -3,7 +3,6 @@ import "./styles.css";
 
 class ThemeProvider extends Component {
   getChildContext() {
-    console.log("theme provider get child context called", this.props);
     const { children, ...context } = this.props;
     return context;
   }

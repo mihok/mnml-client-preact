@@ -7,7 +7,7 @@
 .Message__client__Messenger {
   align-self: flex-end;
   background: #3498db;
-  border-radius: 5px 5px 5px 0;
+  border-radius: 8px 8px 8px 0;
   color: white;
   display: inline-block;
   font-size: 12px;
@@ -30,7 +30,7 @@
 .Message__operator__Messenger {
   align-self: flex-start;
   background: rgb(230, 126, 34);
-  border-radius: 5px 0px 5px 5px;
+  border-radius: 8px 0px 8px 8px;
   color: white;
   display: inline-block;
   font-size: 12px;

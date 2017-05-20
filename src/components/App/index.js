@@ -71,7 +71,6 @@ class App extends Component {
 
   renderOpenChat = () => (
     <Chat
-      chatStyle={this.state.chatStyle}
       toggleChat={this.toggleChat}
       messages={this.state.messages}
       textBox={this.state.textBox}

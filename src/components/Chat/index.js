@@ -49,7 +49,7 @@ class Chat extends Component {
             class={`Chat__CloseBtn__${theme}`}
             onClick={() => toggleChat(false)}
           >
-            x
+          x  
           </button>
         </header>
 

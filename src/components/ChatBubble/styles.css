@@ -6,13 +6,13 @@
 }
 
 .ChatBubble {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   position: fixed;
   bottom: 0;
   right: 0;
-  background: var(--primary-navy);
-  margin: 50px;
+  border: 1px solid #efefef;
+  margin: 40px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -20,8 +20,28 @@
   color: white;
   cursor: pointer;
   transition: all, 0.15s ease;
-
+  /*box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.08);*/
+  animation-name: breathe;
+  animation-duration: 10.4s;
+  animation-direction: alternate-reverse;
+  animation-iteration-count: infinite;
   &:hover {
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.22);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.09);
+  }
+  &:active {
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes breathe {
+  0% {
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.14);
+  }
+  50% {
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  100% {
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.08);
   }
 }

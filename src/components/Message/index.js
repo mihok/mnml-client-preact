@@ -3,10 +3,8 @@ import "./styles.css";
 import theme from "../ThemeProvider/themeHOC";
 
 const Message = props => {
-  console.log(props);
   // our message's content
   const content = props.content.map((msg, i) => <li key={i}>{msg}</li>);
-  console.log(content);
 
   // our default message is a client message
   let message = (
