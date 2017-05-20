@@ -4,7 +4,7 @@
   --padding-main: 12px;
 }
 
-.Message__client {
+.Message__client__Messenger {
   color: white;
   background: #3498db;
   padding: 0.5rem;
@@ -16,7 +16,7 @@
   letter-spacing: 1px;
 }
 
-.Message__operator {
+.Message__operator__Messenger {
   color: white;
   font-size: 12px;
   background: rgb(230, 126, 34);

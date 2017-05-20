@@ -5,14 +5,14 @@
   --padding-main: 12px;
 }
 
-.Chat-box {
+.Chat__Messenger {
   display: flex;
   flex-direction: column;
   background: var(--primary-white);
   flex-grow: 1;
 }
 
-.Chat__Header-box {
+.Chat__Header__Messenger {
   background: var(--primary-grey);
   color: var(--primary-blue);
   padding: var(--padding-main);
@@ -22,11 +22,11 @@
   min-height: 20px;
 }
 
-.Chat__OperatorName-box {
+.Chat__OperatorName__Messenger {
   align-self: center;
 }
 
-.Chat__CloseBtn-box {
+.Chat__CloseBtn__Messenger {
   background: none;
   border: 0;
   color: white;
@@ -49,7 +49,7 @@
   }
 }
 
-.Chat__Body-box {
+.Chat__Body__Messenger {
   display: flex;
   flex-grow: 1;
   padding: var(--padding-main);
@@ -63,7 +63,7 @@
   background: white;
 }
 
-.Chat__Input-box {
+.Chat__Input__Messenger {
   padding: var(--padding-main);
   outline: 0;
   border: 1px solid #efefef;

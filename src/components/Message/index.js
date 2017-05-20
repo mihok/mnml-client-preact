@@ -1,9 +1,12 @@
 import { h, render } from "preact";
 import "./styles.css";
+import theme from "../ThemeProvider/themeHOC";
 
 const Message = props => {
   const msgClass = () =>
-    (props.type === "operator" ? "Message__operator" : "Message__client");
+    props.type === "operator"
+      ? `Message__operator${props.theme}`
+      : `Message__client${props.theme}`;
 
   // incoming props, mesage.content is an array.
   return (
@@ -13,4 +16,4 @@ const Message = props => {
   );
 };
 
-export default Message;
+export default theme(Message);

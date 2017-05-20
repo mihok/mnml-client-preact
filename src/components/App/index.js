@@ -3,6 +3,7 @@ import "./styles.css";
 import Chat from "../Chat/";
 import ChatBubble from "../ChatBubble/";
 import dummy from "../../utils/dummy.js/";
+import ThemeProvider from "../ThemeProvider/index";
 /* import io from "socket.io-client";*/
 // NOTE: SOCKET IS LOADED IN THE EXAMPLE SITE BECASUE ROLLUP IS FAILING AT IMPORTING IO
 // SAD sAD FAIL SAD ADAAA SAD
@@ -11,17 +12,18 @@ const socketPath = "http://localhost:8000";
 
 class App extends Component {
   state = {
-    chatStyle: "box",
+    chatStyle: "box", // NOTE: deprecated
     chatOpen: true,
     messages: dummy(4, 5).messages,
-    textBox: ""
+    textBox: "",
+    theme: "__Messenger" // wrapped with theme provider + HOC
   };
 
   componentDidMount() {
-    window.jam = this
+    window.jam = this;
     this.socket = io.connect(socketPath, {
       reconnectionAttempts: 10,
-      query: 'type=client',
+      query: "type=client"
     });
   }
 
@@ -45,24 +47,23 @@ class App extends Component {
   sendMessage = e => {
     e.preventDefault();
     if (this.state.textBox === "") return;
-    this.socket.emit('client:message', this.state.textBox);
+    this.socket.emit("client:message", this.state.textBox);
 
     this.setState({
       messages: [...this.state.messages, { content: [this.state.textBox] }],
       textBox: ""
     });
-
   };
 
   // if the last message was from the same author, combine 'em.
-  combineLastMessage = (msg) => {
-    if (msg.author !== previousMsg.author) return
-    var messages = this.state.messages
-    var lastMessage = messages[messages[messages.length - 1]]
+  combineLastMessage = msg => {
+    if (msg.author !== previousMsg.author) return;
+    var messages = this.state.messages;
+    var lastMessage = messages[messages[messages.length - 1]];
 
-    previousMsg.content.concat(msg.content)
-    return previousMsg
-  }
+    previousMsg.content.concat(msg.content);
+    return previousMsg;
+  };
 
   // -- Render Methods -> Component Pieces -- //
 
@@ -80,7 +81,7 @@ class App extends Component {
   );
 
   renderChat = () =>
-    (this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat());
+    this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat();
 
   // -- Component Return -- //
 
@@ -88,9 +89,11 @@ class App extends Component {
     const { chatStyle, chatOpen } = this.state;
 
     return (
-      <div class={`App App-${chatStyle}`}>
-        {this.renderChat()}
-      </div>
+      <ThemeProvider theme={this.state.theme}>
+        <div class={`App App-${chatStyle}`}>
+          {this.renderChat()}
+        </div>
+      </ThemeProvider>
     );
   }
 }

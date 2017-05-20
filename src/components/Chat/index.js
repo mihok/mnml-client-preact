@@ -9,6 +9,7 @@ import { h, render, Component } from "preact";
 import "./styles.css";
 import "../../variables.css";
 import Message from "../Message/";
+import theme from "../ThemeProvider/themeHOC";
 
 class Chat extends Component {
   componentDidMount() {
@@ -25,27 +26,27 @@ class Chat extends Component {
 
   renderMessages = () => {
     return this.props.messages.map(msg => {
-      return <Message type={msg.author} content={msg.content}></Message> // msg.content is an array!
+      return <Message type={msg.author} content={msg.content} />; // msg.content is an array!
     });
   };
 
   render() {
     const {
-      chatStyle,
       toggleChat,
       messages,
       textBox,
       handleInput,
-      sendMessage
+      sendMessage,
+      theme
     } = this.props;
 
     return (
-      <section class={`Chat-${chatStyle}`}>
+      <section class={`Chat${theme}`}>
 
-        <header class={`Chat__Header-${chatStyle}`}>
-          <div class={`Chat__OperatorName-${chatStyle}`}>Chat with John</div>
+        <header class={`Chat__Header${theme}`}>
+          <div class={`Chat__OperatorName${theme}`}>Chat with John</div>
           <button
-            class={`Chat__CloseBtn-${chatStyle}`}
+            class={`Chat__CloseBtn${theme}`}
             onClick={() => toggleChat(false)}
           >
             x
@@ -53,13 +54,13 @@ class Chat extends Component {
         </header>
 
         {/* Container for text input and reading messages */}
-        <div class={`Chat__Body-${chatStyle}`} ref={c => this.container = c}>
+        <div class={`Chat__Body${theme}`} ref={c => (this.container = c)}>
           {this.renderMessages()}
         </div>
 
         <form class={`Chat__Form`} onSubmit={sendMessage}>
           <input
-            class={`Chat__Input-${chatStyle}`}
+            class={`Chat__Input${theme}`}
             placeholder="Type Here"
             onChange={e => handleInput(e)}
             name="messages"
@@ -72,4 +73,4 @@ class Chat extends Component {
   }
 }
 
-export default Chat;
+export default theme(Chat);
