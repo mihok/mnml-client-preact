@@ -16,7 +16,7 @@ class App extends Component {
     chatOpen: true,
     messages: dummy(4, 5).messages,
     textBox: "",
-    theme: "__Messenger" // wrapped with theme provider + HOC
+    theme: "Messenger" // wrapped with theme provider + HOC
   };
 
   componentDidMount() {
@@ -86,11 +86,11 @@ class App extends Component {
   // -- Component Return -- //
 
   render() {
-    const { chatStyle, chatOpen } = this.state;
+    const { chatStyle, chatOpen, theme } = this.state;
 
     return (
       <ThemeProvider theme={this.state.theme}>
-        <div class={`App App-${chatStyle}`}>
+        <div class={`App App__${theme}`}>
           {this.renderChat()}
         </div>
       </ThemeProvider>

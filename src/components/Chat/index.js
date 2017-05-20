@@ -41,12 +41,12 @@ class Chat extends Component {
     } = this.props;
 
     return (
-      <section class={`Chat${theme}`}>
+      <section class={`Chat__${theme}`}>
 
-        <header class={`Chat__Header${theme}`}>
-          <div class={`Chat__OperatorName${theme}`}>Chat with John</div>
+        <header class={`Chat__Header__${theme}`}>
+          <div class={`Chat__OperatorName__${theme}`}>Chat with John</div>
           <button
-            class={`Chat__CloseBtn${theme}`}
+            class={`Chat__CloseBtn__${theme}`}
             onClick={() => toggleChat(false)}
           >
             x
@@ -54,13 +54,13 @@ class Chat extends Component {
         </header>
 
         {/* Container for text input and reading messages */}
-        <div class={`Chat__Body${theme}`} ref={c => (this.container = c)}>
+        <ul class={`Chat__Body__${theme}`} ref={c => (this.container = c)}>
           {this.renderMessages()}
-        </div>
+        </ul>
 
         <form class={`Chat__Form`} onSubmit={sendMessage}>
           <input
-            class={`Chat__Input${theme}`}
+            class={`Chat__Input__${theme}`}
             placeholder="Type Here"
             onChange={e => handleInput(e)}
             name="messages"

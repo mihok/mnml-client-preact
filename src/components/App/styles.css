@@ -16,7 +16,7 @@
   flex-grow: 1;
 }
 
-.App-box {
+.App__Messenger {
   position: fixed;
   display: flex;
   flex-direction: column;

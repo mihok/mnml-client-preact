@@ -5,25 +5,44 @@
 }
 
 .Message__client__Messenger {
-  color: white;
-  background: #3498db;
-  padding: 0.5rem;
-  margin: 0.5rem;
-  border-radius: 2px;
   align-self: flex-end;
+  background: #3498db;
+  border-radius: 5px 5px 5px 0;
+  color: white;
+  display: inline-block;
   font-size: 12px;
-  max-width: 65%;
   letter-spacing: 1px;
+  margin: 0.5rem;
+  max-width: 95%;
+  padding: 0.5rem;
+  list-style-type: none;
+}
+
+
+/* Container box for Avatar-op + Operator__Messenger */
+.Message__operator-box__Messenger {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
 }
 
 .Message__operator__Messenger {
-  color: white;
-  font-size: 12px;
-  background: rgb(230, 126, 34);
-  letter-spacing: 1px;
-  padding: 0.5rem;
-  margin: 0.5rem;
-  border-radius: 2px;
   align-self: flex-start;
-  max-width: 65%;
+  background: rgb(230, 126, 34);
+  border-radius: 5px 0px 5px 5px;
+  color: white;
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 1px;
+  list-style: none;
+  max-width: 70%;
+  padding: 0.5rem;
+  text-align: right;
+}
+
+.Message_Avatar-op__Messenger {
+  width: 40px;
+  height: 40px;
+  margin-top: 0.5rem;
 }
