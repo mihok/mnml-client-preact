@@ -26,28 +26,28 @@
 .Message__operator-box__Messenger {
   align-items: flex-start;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin: 0.5rem 0;
 }
 
 .Message__operator__Messenger {
   align-self: flex-start;
-  background: rgb(230, 126, 34);
+  background: #e1e1e1; 
   border-radius: 8px 0px 8px 8px;
-  color: white;
+  color: #333;
   display: inline-block;
   font-size: 12px;
   letter-spacing: 1px;
   list-style: none;
   max-width: 70%;
   padding: 0.5rem;
-  text-align: right;
+  text-align: left;
 }
 
-.Message_Avatar-op__Messenger {
+.Message__Avatar-op__Messenger {
   width: 40px;
   height: 40px;
-  margin-top: 0.5rem;
+  padding-left: 4px; 
 }
 
 /* ======= Float Style ======== */

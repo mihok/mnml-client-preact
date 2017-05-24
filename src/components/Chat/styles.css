@@ -10,16 +10,24 @@
   flex-direction: column;
   background: var(--primary-white);
   flex-grow: 1;
+  box-shadow: #dddddd 1px 1px 8px 0;
+  border-width: 0 1px 1px 0; 
+  border-style: solid;
+  border-bottom: 0;
+  border-radius: 0 3px 3px 0;
+
+  border-color: #cccccc;
 }
 
 .Chat__Header__Messenger {
   background: #72a0e5;
+  box-sizing: border-box;
   color: var(--primary-white);
   padding: var(--padding-main);
   display: flex;
   justify-content: space-between;
-  max-height: 20px;
-  min-height: 20px;
+  height: 32px;
+  border-radius: 3px 3px 0 0;
 }
 
 .Chat__OperatorName__Messenger {
@@ -27,23 +35,19 @@
 }
 
 .Chat__CloseBtn__Messenger {
+  font-weight: 800;
   background: none;
   border: 0;
   color: white;
   font-size: 14px;
   align-self: center;
   outline: none;
-  background: rgba(236, 240, 241, 0.2);
   cursor: pointer;
-  border-radius: 40px;
   width: 24px;
   height: 24px;
   border-radius: 50%;
   line-height: 1;
   padding-top: 0;
-  &:hover {
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.12);
-  }
   &:active {
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0);
   }
@@ -58,6 +62,7 @@
   overflow-y: scroll;
   margin: 0;
 }
+
 
 /* ======= Float Style ======== */
 
@@ -78,9 +83,9 @@
   list-style: none;
   flex-grow: 1;
   justify-content: flex-end;
-  padding-bottom: 64px; /* Push last message down; gives <Input /> room to breathe */
+  padding-bottom: 64px;
+  /* Push last message down; gives <Input /> room to breathe */
 }
-
 
 .Chat__CloseBtn__Float {
   position: absolute;

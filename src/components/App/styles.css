@@ -4,10 +4,18 @@
   --padding-main: 12px;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
 .App {
   font-size: 12px;
-  font-family: Arial;
+  font-family: 'Open Sans', Arial;
+  /*box-shadow: #dddddd 1px 1px 8px 0;
+  border-width: 0 1px 1px 0; 
+  border-style: solid;
+  border-bottom: 0;
+  border-radius: 0 3px 3px 0;
+
+  border-color: #cccccc;*/
 }
 
 .App__container {
