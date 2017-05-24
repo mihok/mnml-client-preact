@@ -7,8 +7,8 @@
 
 /**** Messenger Style ****/
 
-.Form__Messenger {
-  display: flex;
+.Input__Form__Messenger {
+  display: flex !important;
   min-height: 40px;
   background: white;
 }
