@@ -15,7 +15,7 @@ class App extends Component {
     chatOpen: true,
     messages: dummy(4, 5).messages,
     textBox: "",
-    theme: "Float" // wrapped with theme provider + HOC
+    theme: "Messenger" // wrapped with theme provider + HOC
   };
 
   componentDidMount() {
@@ -24,6 +24,8 @@ class App extends Component {
       reconnectionAttempts: 10,
       query: "type=client"
     });
+
+    this.socket.on('operator:message', this.recieveMessage);
   }
 
   // ====================================
@@ -45,14 +47,23 @@ class App extends Component {
   // TODO: combine last message if it's by the same author
   sendMessage = e => {
     e.preventDefault();
+    
     if (this.state.textBox === "") return;
+    
     this.socket.emit("client:message", this.state.textBox);
 
     this.setState({
-      messages: [...this.state.messages, { content: [this.state.textBox] }],
+      messages: [...this.state.messages, { content: [this.state.textBox], author: "client"}],
       textBox: ""
     });
   };
+
+  recieveMessage = data => {
+    this.setState({
+      messages: [...this.state.messages, { content: [data], author: "operator" }],
+    });
+  };
+
 
   // if the last message was from the same author, combine 'em.
   combineLastMessage = msg => {
