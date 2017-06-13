@@ -41,7 +41,7 @@ class Chat extends Component {
       <section className={`Chat__${theme}`}>
 
         <header className={`Chat__Header__${theme}`}>
-          <div className={`Chat__OperatorName__${theme}`}>Chat with Carly</div>
+          <div className={`Chat__OperatorName__${theme}`}>Chat with chodey</div>
           <button
             className={`Chat__CloseBtn__${theme}`}
             onClick={() => toggleChat(false)}

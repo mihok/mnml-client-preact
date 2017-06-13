@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "start": "serve build -s -c 1",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress",
     "prestart": "npm run build",
     "build": "cross-env NODE_ENV=production webpack -p --progress --watch",
     "prebuild": "mkdirp build && cp src/index.html build/index.html",

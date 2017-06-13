@@ -2,11 +2,9 @@ import { h, render, Component } from 'preact';
 import './styles.css';
 import Chat from '../Chat/';
 import ChatBubble from '../ChatBubble/';
-import dummy from '../../utils/dummy.js';
+import dummy from '../../../lib/dummy.js';
 import ThemeProvider from '../ThemeProvider/index';
-/* import io from "socket.io-client";*/
-// NOTE: SOCKET IS LOADED IN THE EXAMPLE SITE BECASUE ROLLUP IS FAILING AT IMPORTING IO
-// SAD sAD FAIL SAD ADAAA SAD
+/* import io from "socket.io-client";*/ // socket io doesn't properly import from webpack?
 
 const socketPath = 'http://localhost:8000';
 

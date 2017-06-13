@@ -20,6 +20,7 @@ module.exports = {
   resolve: {
     extensions: ['.jsx', '.js', '.json', '.less'],
     modules: [
+      path.resolve(__dirname, "src/lib"),
       path.resolve(__dirname, 'node_modules'),
       'node_modules',
     ],
@@ -125,4 +126,20 @@ module.exports = {
   },
 
   devtool: ENV === 'production' ? 'source-map' : 'cheap-module-eval-source-map',
+
+  devServer: {
+		port: process.env.PORT || 8080,
+		host: 'localhost',
+		publicPath: '/',
+		contentBase: './build',
+		historyApiFallback: true,
+		open: true,
+		proxy: {
+			// OPTIONAL: proxy configuration:
+			// '/optional-prefix/**': { // path pattern to rewrite
+			//   target: 'http://target-host.com',
+			//   pathRewrite: path => path.replace(/^\/[^\/]+\//, '')   // strip first path segment
+			// }
+		}
+	}
 };
