@@ -1,6 +1,6 @@
 import { h, render, Component } from 'preact';
 import './styles.css';
-import theme from '../ThemeProvider/themeHOC';
+import themer from '../ThemeProvider/themeHOC';
 
 const Input = (props) => {
   const { sendMessage, theme, textBox, handleInput } = props;
@@ -16,4 +16,4 @@ const Input = (props) => {
     </form>
   );
 };
-export default theme(Input);
+export default themer(Input);

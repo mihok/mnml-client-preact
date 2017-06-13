@@ -1,6 +1,6 @@
 import { h, render } from 'preact';
 import './styles.css';
-import theme from '../ThemeProvider/themeHOC';
+import themer from '../ThemeProvider/themeHOC';
 
 const Message = (props) => {
   // our message's content
@@ -37,4 +37,4 @@ const Message = (props) => {
   );
 };
 
-export default theme(Message);
+export default themer(Message);

@@ -1,6 +1,5 @@
 import { h, render, Component } from 'preact';
 import './styles.css';
-import chatIcon from './chaticon.svg';
 
 const ChatBubble = props => (
   <div onClick={() => props.toggleChat(true)} className="ChatBubble">

@@ -8,7 +8,7 @@
 import { h, render, Component } from 'preact';
 import './styles.css';
 import Message from '../Message/';
-import theme from '../ThemeProvider/themeHOC';
+import themer from '../ThemeProvider/themeHOC';
 import Input from '../Input/index';
 
 class Chat extends Component {
@@ -78,4 +78,4 @@ class Chat extends Component {
   }
 }
 
-export default theme(Chat);
+export default themer(Chat);

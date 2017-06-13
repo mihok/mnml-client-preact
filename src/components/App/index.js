@@ -2,7 +2,7 @@ import { h, render, Component } from 'preact';
 import './styles.css';
 import Chat from '../Chat/';
 import ChatBubble from '../ChatBubble/';
-import dummy from '../../../lib/dummy.js';
+import dummy from '../../../lib/dummy';
 import ThemeProvider from '../ThemeProvider/index';
 /* import io from "socket.io-client";*/ // socket io doesn't properly import from webpack?
 
@@ -63,15 +63,16 @@ class App extends Component {
   };
 
 
+  //TODO:
   // if the last message was from the same author, combine 'em.
-  combineLastMessage = (msg) => {
-    if (msg.author !== previousMsg.author) return;
-    const messages = this.state.messages;
-    const lastMessage = messages[messages[messages.length - 1]];
+  // combineLastMessage = (msg) => {
+  //   if (msg.author !== previousMsg.author) return;
+  //   const messages = this.state.messages;
+  //   const lastMessage = messages[messages[messages.length - 1]];
 
-    previousMsg.content.concat(msg.content);
-    return previousMsg;
-  };
+  //   previousMsg.content.concat(msg.content);
+  //   return previousMsg;
+  // };
 
   // -- Render Methods -> Component Pieces -- //
 
@@ -93,7 +94,7 @@ class App extends Component {
   // -- Component Return -- //
 
   render () {
-    const { chatStyle, chatOpen, theme } = this.state;
+    const { theme } = this.state;
 
     return (
       <ThemeProvider theme={this.state.theme}>
