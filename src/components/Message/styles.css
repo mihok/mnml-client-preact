@@ -1,0 +1,100 @@
+/* ======= Messenger Style ======== */
+
+.Message__client__Messenger {
+  align-self: flex-end;
+  background: #3498db;
+  border-radius: 8px 8px 8px 0;
+  color: white;
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin: 0.5rem;
+  max-width: 95%;
+  padding: 0.5rem;
+  list-style-type: none;
+}
+
+
+/* Container box for Avatar-op + Operator__Messenger */
+.Message__operator-box__Messenger {
+  align-items: flex-start;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.5rem 0;
+}
+
+.Message__operator__Messenger {
+  align-self: flex-start;
+  background: #e1e1e1; 
+  border-radius: 8px 0px 8px 8px;
+  color: #333;
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 1px;
+  list-style: none;
+  max-width: 70%;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.Message__Avatar-op__Messenger {
+  width: 40px;
+  height: 40px;
+  padding-left: 4px; 
+}
+
+/* ======= Float Style ======== */
+/* Top level container around an <li> message */
+.Message__box__Float{
+    margin: 7px 0;
+    padding-right: 10px; /* move msgs away from scrollbar */
+}
+
+.Message_Avatar-op__Float {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.Message__operator-box__Float {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* A Floating message client  */
+.Message__operator__Float{
+  margin: 0;
+  list-style: none;
+  width: 160px;
+  float: left;
+  text-align: left;
+  background: #ffffff;
+  color: #000000;
+  margin-top: 4px;
+  margin-left: 4px;
+  box-shadow: #dddddd 1px 1px 8px 0;
+  border-radius: 10px 0px 10px 0px;
+  padding: 16px;
+}
+
+ /* A Floating message client  */
+.Message__client__Float{
+  margin: 0;
+  padding: 16px;
+  list-style: none;
+  width: 160px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  box-shadow: #dddddd 1px 1px 8px 0;
+  border-radius: 10px 10px 10px 0px;
+  background: #0a6bef;
+  float: left;
+  text-align: left;
+  color: #ffffff;
+  }
+
+
+
+
+/* ======= Sidebar Style ======== */
