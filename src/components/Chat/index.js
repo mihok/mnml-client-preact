@@ -30,7 +30,6 @@ class Chat extends Component {
   render () {
     const {
       toggleChat,
-      messages,
       textBox,
       handleInput,
       sendMessage,

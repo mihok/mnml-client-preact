@@ -1,5 +1,6 @@
 {
   "parser": "babel-eslint",
+  "plugins": ["react"],
   "extends": [
     "airbnb",
     "prettier"
@@ -9,24 +10,24 @@
     "node": true,
     "jest": true
   },
+  "settings": {
+    "react": {
+      "pragma": "h"
+    }
+  },
   "rules": {
     "arrow-body-style": ["error", "as-needed"],
     "class-methods-use-this": ["warn"],
     "space-before-function-paren": ["error", "always"],
+    "react/prop-types": 0,
+    "no-unused-vars": ["warn", { "varsIgnorePattern": "(^h$)|(^render$)|(^Component$)|(^children$)" }],
+    "react/no-unknown-property": [2, { "ignore": ["class"] }],
     "prefer-const": ["warn"],
-    "import/no-extraneous-dependencies": [
-      "error", { "devDependencies": ["**/*.test.js", "**/*.test.jsx", "**/*.spec.js", "**/*.spec.jsx"]}
-    ],
-    // "import/extensions": ["error", { "o": "always" }],
-     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "no-unused-vars": ["warn"],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "no-console": ["warn"],
     "no-prototype-builtins": ["off"],
     "no-multiple-empty-lines": ["off"],
     "no-use-before-define": ["warn"],
-    // "react/no-multi-comp": ["warn"],
-    // "react/jsx-no-bind": ["warn"],
-    "react/prop-types": 0,
     "react/react-in-jsx-scope": 0,
     "jsx-a11y/no-static-element-interactions": ["warn"]
   }
