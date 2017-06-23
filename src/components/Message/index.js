@@ -29,6 +29,9 @@ const Message = (props) => {
       </div>
     );
   }
+
+  // TODO: Messages sent within a period of time should be aggregated.
+
   // incoming props, mesage.content is an array.
   return (
     <li className={`Message__box__${props.theme}`}>
