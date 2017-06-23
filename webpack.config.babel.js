@@ -66,9 +66,7 @@ module.exports = {
   },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(ENV),
-    }),
+    new webpack.EnvironmentPlugin(['NODE_ENV', 'PORT', 'REMOTE_HOST'])
   ].concat(
     ENV === 'production'
       ? [
@@ -129,7 +127,7 @@ module.exports = {
 
   devServer: {
 		port: process.env.PORT || 8080,
-		host: 'localhost',
+		host: process.env.HOST || 'localhost',
 		publicPath: '/',
 		contentBase: './build',
 		historyApiFallback: true,

@@ -5,7 +5,7 @@ import ChatBubble from "../ChatBubble/";
 import ThemeProvider from "../ThemeProvider/index"; // socket io doesn't properly import from webpack?
 /* import io from "socket.io-client";*/ const io = window.io || {};
 
-const socketPath = "http://localhost:8000";
+const socketPath = `http://${process.env.REMOTE_HOST || 'localhost'}:8000`;
 
 class App extends Component {
   state = {
@@ -54,7 +54,6 @@ class App extends Component {
     if (this.state.textBox === "") return;
     let msg = this.formatMessage(this.state.textBox);
     let messageCombined = this.combineLastMessage(msg);
-
 
     // "sending" messages: store in local component state and emit over sockets
     this.socket.emit("client:message", JSON.stringify(msg));
