@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component should render  1`] = `"<section class=\\"Chat__undefined\\"><header class=\\"Chat__Header__undefined\\"><div class=\\"Chat__OperatorName__undefined\\">Chat with John</div><button class=\\"Chat__CloseBtn__undefined\\">x </button></header><ul class=\\"Chat__Body__undefined\\"></ul><form class=\\"Input__Form__undefined\\"><input class=\\"Input__undefined\\" placeholder=\\"Type Here\\" name=\\"messages\\" /></form></section>"`;
