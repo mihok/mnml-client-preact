@@ -15,7 +15,8 @@
     "format": "prettier-eslint --trailing-comma es5 --single-quote --print-width 100 --write \"src/**/*.js\"",
     "lint": "eslint src test",
     "coverage": "npm run test -- --coverage && cat coverage/lcov.info | coveralls",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress",
+    "start": "npm run dev"
   },
   "jest": {
     "setupFiles": [
