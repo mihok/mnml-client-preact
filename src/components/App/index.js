@@ -4,11 +4,12 @@ import Chat from '../Chat/';
 import ChatBubble from '../ChatBubble/';
 import ThemeProvider from '../ThemeProvider/index';
 
-// socket io doesn't properly import from webpack?
+// TODO: socket io doesn't properly import from webpack?
 /* import io from "socket.io-client";*/ const io = window.io || {};
 
-const socketPath = `http://${process.env.REMOTE_HOST || 'localhost'}:${process.env.REMOTE_PORT ||
-  '8000'}`;
+const remoteHost = process.env.REMOTE_HOST || 'localhost';
+const remotePort = process.env.REMOTE_PORT || '8000';
+const socketPath = `http://${remoteHost}:${remotePort}`;
 
 class App extends Component {
   state = {
@@ -27,6 +28,7 @@ class App extends Component {
     });
 
     this.socket.on('operator:message', this.recieveMessage);
+    this.socket.on('chat:new', this.handleNewConnection);
   }
 
   // ====================================
@@ -42,13 +44,24 @@ class App extends Component {
   };
 
   // ====================================
+  //  Socket Methods
+  // ====================================
+  /**
+  * @description On connecting to the socket server save a session object into the state
+  */
+  handleNewConnection = e => {
+    this.setState({
+      session: JSON.parse(e),
+    });
+  };
+
+  // ====================================
   //  Message Methods
   // ====================================
 
-  // TODO: combine last message if it's by the same author
   /** Send Message
    * @summary - Allow a user to send a message and save to local react state.
-   * @description - Will either save a single message to the messages array or will 
+   * @description - Will either save a single message to the messages array or will
    * will combine with previous messages if it can.
    * @param {object} e - event object; used to prevent refreshing the page
    */
