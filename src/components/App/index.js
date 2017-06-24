@@ -11,6 +11,7 @@ const remoteHost = process.env.REMOTE_HOST || 'localhost';
 const remotePort = process.env.REMOTE_PORT || '8000';
 const socketPath = `http://${remoteHost}:${remotePort}`;
 
+
 class App extends Component {
   state = {
     chatOpen: true,
@@ -59,27 +60,14 @@ class App extends Component {
   //  Message Methods
   // ====================================
 
-  /** Send Message
-   * @summary - Allow a user to send a message and save to local react state.
-   * @description - Will either save a single message to the messages array or will
-   * will combine with previous messages if it can.
-   * @param {object} e - event object; used to prevent refreshing the page
-   */
-  sendMessage = e => {
-    // standard starter stuff, set up vars, conditional returns etc.
-    e.preventDefault(); // must be the first thing to happen
-    if (this.state.textBox === '') return;
-    const msg = this.formatMessage(this.state.textBox);
-    // const messageCombined = this.combineLastMessage(msg);
 
-    // "sending" messages: store in local component state and emit over sockets
-    this.socket.emit('client:message', JSON.stringify(msg));
-
-    // save the message to local stage: either combining them or not.
-    if (this.combineLastMessage(msg)) {
+  // TODO: docstring
+  // save the message to local stage: either combining them or not.
+  saveMessageToState = msg => {
+    const formattedMsg = this.formatMessage(msg, 'local');
+    if (this.combineLastMessage(formattedMsg)) {
       const messages = this.state.messages;
-
-      messages[messages.length - 1].content.push(...msg.content);
+      messages[messages.length - 1].content.push(...formattedMsg.content);
 
       this.setState({
         messages,
@@ -87,10 +75,28 @@ class App extends Component {
       });
     } else {
       this.setState({
-        messages: [...this.state.messages, msg],
+        messages: [...this.state.messages, formattedMsg],
         textBox: '',
       });
     }
+  };
+
+  saveMessageToServer = msg => {
+    const formattedMsg = this.formatMessage(msg);
+    this.socket.emit('client:message', JSON.stringify(formattedMsg));
+  };
+
+  /** Send Message
+   * @summary - Allow a user to send a message.
+   * @description - Passes the message through some functions to save it locally and remotely
+   * @param {object} e - event object; used to prevent refreshing the page
+   */
+  sendMessage = e => {
+    e.preventDefault(); // must be the first thing to happen
+    if (this.state.textBox === '') return;
+    const msg = this.state.textBox;
+    this.saveMessageToState(msg);
+    this.saveMessageToServer(msg);
   };
 
   recieveMessage = data => {
@@ -102,14 +108,18 @@ class App extends Component {
   /** Format Message
    * @description: Formats a message to a proper object with metadata
    * @param {msg}: takes a plain ol' string that is a chat message
+   * @param {destination}: format the message differently based on the destination it's going to.
    * @returns {obj} with timestamp, author data, and content.
    */
-  formatMessage = msg => ({
-    timestamp: Date.now(),
-    // Messages are an [] so -> can be combined on next message if same author.
-    content: [msg],
-    author: 'client',
-  });
+  formatMessage = (msg, destination) => {
+    const content = destination === 'local' ? [msg] : msg;
+
+    return {
+      timestamp: Date.now(),
+      author: 'client',
+      content,
+    }
+  };
 
   /**
    * @summary Checks if message can combine with prev. message in local state.
@@ -120,7 +130,6 @@ class App extends Component {
     const previousMessage = this.state.messages[this.state.messages.length - 1];
     if (!previousMessage) return false; // return if this is the first message in the conversation
     if (msg.author !== previousMessage.author) {
-      console.log('the last message -> different author from current msg');
       return false;
     }
     return true;
