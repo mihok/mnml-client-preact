@@ -6,15 +6,16 @@
   "repository": "minimalchat/client.git",
   "license": "BSD-3-Clause",
   "scripts": {
-    "start": "serve build -s -c 1",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress",
-    "prestart": "npm run build",
-    "build": "cross-env NODE_ENV=production webpack -p --progress --watch",
-    "prebuild": "mkdirp build && cp src/index.html build/index.html",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "build": "npm run build:dev",
+    "build:dev": "cross-env NODE_ENV=development webpack --progress --colors",
+    "build:production": "cross-env NODE_ENV=production webpack -p --progress --colors",
+    "build:watch": "npm run build:dev -- --watch",
     "format": "prettier-eslint --trailing-comma es5 --single-quote --print-width 100 --write \"src/**/*.js\"",
-    "test": "npm run -s lint && jest --coverage",
-    "test:watch": "npm run -s test -- --watch",
-    "lint": "eslint src test"
+    "lint": "eslint src test",
+    "coverage": "npm run test -- --coverage && cat coverage/lcov.info | coveralls",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress"
   },
   "jest": {
     "setupFiles": [
