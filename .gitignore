@@ -8,3 +8,5 @@ yarn.lock
 /.vscode
 *.swp
 *.swo
+/dist/*.js
+/dist/*.js.map
