@@ -11,7 +11,7 @@
     "prestart": "npm run build",
     "build": "cross-env NODE_ENV=production webpack -p --progress --watch",
     "prebuild": "mkdirp build && cp src/index.html build/index.html",
-    "format": "prettier-eslint \"src/**/*.js\"",
+    "format": "prettier-eslint --trailing-comma es5 --single-quote --print-width 100 --write \"src/**/*.js\"",
     "test": "npm run -s lint && jest --coverage",
     "test:watch": "npm run -s test -- --watch",
     "lint": "eslint src test"

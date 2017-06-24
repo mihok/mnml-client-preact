@@ -5,7 +5,7 @@ import themer from '../ThemeProvider/themeHOC';
 
 import './styles.css';
 
-const Input = (props) => {
+const Input = props => {
   const { sendMessage, theme, textBox, handleInput } = props;
   return (
     <form className={`Input__Form__${theme}`} onSubmit={sendMessage}>

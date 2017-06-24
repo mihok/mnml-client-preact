@@ -6,7 +6,7 @@ import './styles.css';
 class ThemeProvider extends Component {
   propTypes = {
     children: PropTypes.element,
-  }
+  };
 
   getChildContext () {
     const { ...context } = this.props;

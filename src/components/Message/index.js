@@ -5,7 +5,7 @@ import themer from '../ThemeProvider/themeHOC';
 
 import './styles.css';
 
-const Message = (props) => {
+const Message = props => {
   // our message's content
   const content = props.content.map((msg, i) => <li key={i}>{msg}</li>);
 
@@ -47,8 +47,6 @@ Message.propTypes = {
   theme: PropTypes.string,
   type: PropTypes.string,
   content: PropTypes.arrayOf(PropTypes.string),
-
 };
-
 
 export default themer(Message);

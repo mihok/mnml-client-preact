@@ -28,7 +28,7 @@ class Chat extends Component {
       content: PropTypes.arrayOf(PropTypes.string),
       chat: PropTypes.string,
     }),
-  }
+  };
 
   componentDidMount () {
     this.scrollToBottom();
@@ -40,29 +40,21 @@ class Chat extends Component {
 
   scrollToBottom = () => {
     this.container.scrollTop = this.container.scrollHeight;
-  }
+  };
 
   // msg.content is an array!
-  renderMessages = () => this.props.messages.map(msg => <Message type={msg.author} content={msg.content} />)
+  renderMessages = () =>
+    this.props.messages.map(msg => <Message type={msg.author} content={msg.content} />);
 
   render () {
-    const {
-      toggleChat,
-      textBox,
-      handleInput,
-      sendMessage,
-      theme,
-    } = this.props;
+    const { toggleChat, textBox, handleInput, sendMessage, theme } = this.props;
 
     return (
       <section className={`Chat__${theme}`}>
 
         <header className={`Chat__Header__${theme}`}>
           <div className={`Chat__OperatorName__${theme}`}>Chat with John</div>
-          <button
-            className={`Chat__CloseBtn__${theme}`}
-            onClick={() => toggleChat(false)}
-          >
+          <button className={`Chat__CloseBtn__${theme}`} onClick={() => toggleChat(false)}>
             x{' '}
           </button>
         </header>
@@ -72,11 +64,7 @@ class Chat extends Component {
           {this.renderMessages()}
         </ul>
 
-        <Input
-          sendMessage={sendMessage}
-          textBox={textBox}
-          handleInput={handleInput}
-        />
+        <Input sendMessage={sendMessage} textBox={textBox} handleInput={handleInput} />
 
         {/*
         <form class={`Chat__Form`} onSubmit={sendMessage}>
