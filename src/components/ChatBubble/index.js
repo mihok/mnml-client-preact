@@ -1,4 +1,6 @@
-import { h, render, Component } from 'preact';
+import { h } from 'preact';
+import PropTypes from 'prop-types';
+
 import './styles.css';
 
 const ChatBubble = props => (
@@ -27,5 +29,9 @@ const ChatBubble = props => (
     </svg>
   </button>
   );
+
+ChatBubble.propTypes = {
+  toggleChat: PropTypes.func,
+};
 
 export default ChatBubble;

@@ -1,6 +1,9 @@
-import { h, render, Component } from 'preact';
-import './styles.css';
+import { h } from 'preact';
+import PropTypes from 'prop-types';
+
 import themer from '../ThemeProvider/themeHOC';
+
+import './styles.css';
 
 const Input = (props) => {
   const { sendMessage, theme, textBox, handleInput } = props;
@@ -16,4 +19,13 @@ const Input = (props) => {
     </form>
   );
 };
+
+Input.propTypes = {
+  handleInput: PropTypes.func,
+  sendMessage: PropTypes.func,
+
+  theme: PropTypes.string,
+  textBox: PropTypes.string,
+};
+
 export default themer(Input);
