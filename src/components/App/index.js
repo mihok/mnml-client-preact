@@ -28,7 +28,7 @@ class App extends Component {
       query: 'type=client',
     });
 
-    this.socket.on('operator:message', this.recieveMessage);
+    this.socket.on('operator:message', this.receiveMessage);
     this.socket.on('chat:new', this.handleNewConnection);
   }
 
@@ -64,6 +64,7 @@ class App extends Component {
   // TODO: docstring
   // save the message to local stage: either combining them or not.
   saveMessageToState = msg => {
+    debugger
     const formattedMsg = this.formatMessage(msg, 'local');
     if (this.combineLastMessage(formattedMsg)) {
       const messages = this.state.messages;
@@ -99,10 +100,26 @@ class App extends Component {
     this.saveMessageToServer(msg);
   };
 
-  recieveMessage = data => {
-    this.setState({
-      messages: [...this.state.messages, { content: [data], author: 'operator' }],
-    });
+  receiveMessage = data => {
+    const msg = [JSON.parse(data)] // in arr so it can be combined
+
+    if (this.combineLastMessage(msg)) {
+      const messages = this.state.messages;
+      messages[messages.length - 1].content.push(...msg.content);
+
+      this.setState({
+        messages,
+        textBox: '',
+      });
+    } else {
+      this.setState({
+        messages: [...this.state.messages, msg],
+        textBox: '',
+      });
+    }
+    /* this.setState({
+     *   messages: [...this.state.messages, { content: [msg.content], author: 'operator' }],
+     * });*/
   };
 
   /** Format Message
@@ -116,8 +133,9 @@ class App extends Component {
 
     return {
       timestamp: Date.now(),
-      author: 'client',
+      author: `client-${this.state.session.client.id}`,
       content,
+      chat: this.state.session.id
     }
   };
 
