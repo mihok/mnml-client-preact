@@ -1,6 +1,9 @@
-import { h, render } from 'preact';
-import './styles.css';
+import { h } from 'preact';
+import PropTypes from 'prop-types';
+
 import themer from '../ThemeProvider/themeHOC';
+
+import './styles.css';
 
 const Message = (props) => {
   // our message's content
@@ -39,5 +42,13 @@ const Message = (props) => {
     </li>
   );
 };
+
+Message.propTypes = {
+  theme: PropTypes.string,
+  type: PropTypes.string,
+  content: PropTypes.arrayOf(PropTypes.string),
+
+};
+
 
 export default themer(Message);

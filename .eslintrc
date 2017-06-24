@@ -1,6 +1,5 @@
 {
   "parser": "babel-eslint",
-  "plugins": ["react"],
   "extends": [
     "airbnb",
     "prettier"
@@ -19,16 +18,15 @@
     "arrow-body-style": ["error", "as-needed"],
     "class-methods-use-this": ["warn"],
     "space-before-function-paren": ["error", "always"],
-    "react/prop-types": 0,
-    "no-unused-vars": ["warn", { "varsIgnorePattern": "(^h$)|(^render$)|(^Component$)|(^children$)" }],
-    "react/no-unknown-property": [2, { "ignore": ["class"] }],
     "prefer-const": ["warn"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-unused-vars": ["warn"],
     "no-console": ["warn"],
     "no-prototype-builtins": ["off"],
     "no-multiple-empty-lines": ["off"],
     "no-use-before-define": ["warn"],
     "react/react-in-jsx-scope": 0,
+    "react/prefer-stateless-function": ["warn"],
     "jsx-a11y/no-static-element-interactions": ["warn"]
   }
 }

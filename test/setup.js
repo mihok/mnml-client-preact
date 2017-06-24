@@ -1,4 +1,4 @@
-import 'regenerator-runtime/runtime';
+// import 'regenerator-runtime/runtime';
 import chai from 'chai';
 import assertJsx, { options } from 'preact-jsx-chai';
 

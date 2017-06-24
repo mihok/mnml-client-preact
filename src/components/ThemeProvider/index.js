@@ -1,9 +1,15 @@
-import { h, render, Component } from 'preact';
+import { Component } from 'preact';
+import PropTypes from 'prop-types';
+
 import './styles.css';
 
 class ThemeProvider extends Component {
+  propTypes = {
+    children: PropTypes.element,
+  }
+
   getChildContext () {
-    const { children, ...context } = this.props;
+    const { ...context } = this.props;
     return context;
   }
   render ({ children }) {

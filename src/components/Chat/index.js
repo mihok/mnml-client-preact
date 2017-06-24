@@ -5,13 +5,31 @@
  * Needs to be a class based component in order to have that functionality ^
  */
 
-import { h, render, Component } from 'preact';
-import './styles.css';
+import { h, Component } from 'preact';
+import PropTypes from 'prop-types';
+
 import Message from '../Message/';
-import themer from '../ThemeProvider/themeHOC';
 import Input from '../Input/index';
+import themer from '../ThemeProvider/themeHOC';
+
+import './styles.css';
 
 class Chat extends Component {
+  propTypes = {
+    toggleChat: PropTypes.func,
+    handleInput: PropTypes.func,
+    sendMessage: PropTypes.func,
+
+    theme: PropTypes.string,
+    textBox: PropTypes.string,
+    messages: PropTypes.arrayOf({
+      timestamp: PropTypes.string,
+      author: PropTypes.string,
+      content: PropTypes.arrayOf(PropTypes.string),
+      chat: PropTypes.string,
+    }),
+  }
+
   componentDidMount () {
     this.scrollToBottom();
   }
@@ -22,10 +40,10 @@ class Chat extends Component {
 
   scrollToBottom = () => {
     this.container.scrollTop = this.container.scrollHeight;
-  };
+  }
 
-  renderMessages = () => this.props.messages.map(msg => <Message type={msg.author} content={msg.content} />, // msg.content is an array!
-    );
+  // msg.content is an array!
+  renderMessages = () => this.props.messages.map(msg => <Message type={msg.author} content={msg.content} />)
 
   render () {
     const {
