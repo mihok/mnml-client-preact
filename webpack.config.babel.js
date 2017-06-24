@@ -66,7 +66,7 @@ module.exports = {
   },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.EnvironmentPlugin(['NODE_ENV', 'PORT', 'REMOTE_HOST'])
+    new webpack.EnvironmentPlugin(['NODE_ENV', 'PORT', 'REMOTE_HOST','REMOTE_PORT'])
   ].concat(
     ENV === 'production'
       ? [
@@ -114,13 +114,14 @@ module.exports = {
 
   stats: { colors: true },
 
+  // I dont think any of these are necessary
   node: {
     global: true,
-    process: false,
-    Buffer: false,
-    __filename: false,
-    __dirname: false,
-    setImmediate: false,
+    // process: false,
+    // Buffer: false,
+    // __filename: false,
+    // __dirname: false,
+    // setImmediate: false,
   },
 
   devtool: ENV === 'production' ? 'source-map' : 'cheap-module-eval-source-map',
@@ -131,7 +132,7 @@ module.exports = {
 		publicPath: '/',
 		contentBase: './build',
 		historyApiFallback: true,
-		open: true,
+		open: true, // This annoys the hell out of me
 		proxy: {
 			// OPTIONAL: proxy configuration:
 			// '/optional-prefix/**': { // path pattern to rewrite
