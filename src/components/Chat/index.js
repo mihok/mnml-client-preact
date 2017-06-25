@@ -8,8 +8,9 @@
 import { h, Component } from 'preact';
 import PropTypes from 'prop-types';
 
+import Header from '../Header/';
 import Message from '../Message/';
-import Input from '../Input/index';
+import Input from '../Input/';
 import themer from '../ThemeProvider/themeHOC';
 
 import './styles.css';
@@ -50,34 +51,15 @@ class Chat extends Component {
     const { toggleChat, textBox, handleInput, sendMessage, theme } = this.props;
 
     return (
-      <section className={`Chat__${theme}`}>
-
-        <header className={`Chat__Header__${theme}`}>
-          <div className={`Chat__OperatorName__${theme}`}>Chat with John</div>
-          <button className={`Chat__CloseBtn__${theme}`} onClick={() => toggleChat(false)}>
-            x{' '}
-          </button>
-        </header>
-
+      <section className={`Chat--${theme}`}>
+        <Header toggleChat={toggleChat} />
+       
         {/* Container for text input and reading messages */}
-        <ul className={`Chat__Body__${theme}`} ref={c => (this.container = c)}>
+        <ul className={`Chat__body--${theme}`} ref={c => (this.container = c)}>
           {this.renderMessages()}
         </ul>
 
         <Input sendMessage={sendMessage} textBox={textBox} handleInput={handleInput} />
-
-        {/*
-        <form class={`Chat__Form`} onSubmit={sendMessage}>
-          <input
-            class={`Chat__Input__${theme}`}
-            placeholder="Type Here"
-            onChange={e => handleInput(e)}
-            name="messages"
-            value={textBox}
-          />
-        </form>
-        */}
-
       </section>
     );
   }

@@ -1,73 +1,40 @@
+/* Chat Component */
 
-.Chat__Messenger {
+
+/* Messenger Theme */
+
+.Chat--messenger {
   display: flex;
   flex-direction: column;
-  background: #efefef;
+  background: rgba(248,248,248,1);
   flex-grow: 1;
   box-shadow: #dddddd 1px 1px 8px 0;
-  border-width: 0 1px 1px 0; 
-  border-style: solid;
-  border-bottom: 0;
+  border: 0; 
   border-radius: 0 3px 3px 0;
-
-  border-color: #cccccc;
 }
 
-.Chat__Header__Messenger {
-  background: #72a0e5;
-  box-sizing: border-box;
-  color: #efefef;
-  padding: var(--padding-main);
-  display: flex;
-  justify-content: space-between;
-  height: 32px;
-  border-radius: 3px 3px 0 0;
-}
-
-.Chat__OperatorName__Messenger {
-  align-self: center;
-}
-
-.Chat__CloseBtn__Messenger {
-  font-weight: 800;
-  background: none;
-  border: 0;
-  color: white;
-  font-size: 14px;
-  align-self: center;
-  outline: none;
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  line-height: 1;
-  padding-top: 0;
-  &:active {
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0);
-  }
-}
-
-.Chat__Body__Messenger {
+.Chat__body--messenger {
   list-style: none;
   display: flex;
   flex-grow: 1;
-  padding: var(--padding-main);
+  padding: 6px 4px;
   flex-direction: column;
   overflow-y: scroll;
   margin: 0;
+  border-right: 1px solid rgba(0,0,0,0.1);
 }
 
 
-/* ======= Float Style ======== */
+/* Float Theme */
 
-.Chat__Float {
+.Chat--float {
   position: absolute;
   right: 30px;
   bottom: 60px;
   background-color: transparent;
 }
 
-.Chat__Body__Float {
+.Chat__body--float {
   display: block;
   width: 280px;
   height: 80vh;
@@ -81,20 +48,4 @@
   /* Push last message down; gives <Input /> room to breathe */
 }
 
-.Chat__CloseBtn__Float {
-  position: absolute;
-  bottom: -48px;
-  /* right: -48px; */
-  display: block;
-  width: 42px;
-  height: 42px;
-  padding: 11px 5px 11px 6px;
-  box-sizing: border-box;
-  box-shadow: #dddddd 1px 1px 8px 0;
-  border-radius: 21px;
-  font-size: 13px;
-  font-family: 'Arial', sans-serif;
-  color: #ffffff;
-  background-color: #72a0e5;
-  border: 0;
-}
+

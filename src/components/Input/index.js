@@ -8,9 +8,9 @@ import './styles.css';
 const Input = props => {
   const { sendMessage, theme, textBox, handleInput } = props;
   return (
-    <form className={`Input__Form__${theme}`} onSubmit={sendMessage}>
+    <form className={`Input__form--${theme}`} onSubmit={sendMessage}>
       <input
-        className={`Input__${theme}`}
+        className={`Input--${theme}`}
         placeholder="Type Here"
         onChange={e => handleInput(e)}
         name="messages"

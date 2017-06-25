@@ -7,17 +7,21 @@ import ThemeProvider from '../ThemeProvider/index';
 // TODO: socket io doesn't properly import from webpack?
 /* import io from "socket.io-client";*/ const io = window.io || {};
 
+const MESSENGER = 'messenger';
+const FLOAT = 'float';
+const SIDEPANEL = 'side';
+
 const remoteHost = process.env.REMOTE_HOST || 'localhost';
 const remotePort = process.env.REMOTE_PORT || '8000';
-const socketPath = `http://${remoteHost}:${remotePort}`;
 
+const socketPath = `http://${remoteHost}:${remotePort}`;
 
 class App extends Component {
   state = {
     chatOpen: true,
     messages: [],
     textBox: '',
-    theme: 'Messenger', // wrapped with theme provider + HOC
+    theme: MESSENGER, // wrapped with theme provider + HOC
   };
 
   componentDidMount () {
@@ -32,9 +36,7 @@ class App extends Component {
     this.socket.on('chat:new', this.handleNewConnection);
   }
 
-  // ====================================
   // Event Handlers
-  // ====================================
 
   toggleChat = bool => {
     this.setState({ chatOpen: bool });
@@ -44,9 +46,8 @@ class App extends Component {
     this.setState({ textBox: e.target.value });
   };
 
-  // ====================================
   //  Socket Methods
-  // ====================================
+
   /**
   * @description On connecting to the socket server save a session object into the state
   */
@@ -56,16 +57,13 @@ class App extends Component {
     });
   };
 
-  // ====================================
   //  Message Methods
-  // ====================================
-
 
   // TODO: docstring
   // save the message to local stage: either combining them or not.
   saveMessageToState = msg => {
-    debugger
     const formattedMsg = this.formatMessage(msg, 'local');
+
     if (this.combineLastMessage(formattedMsg)) {
       const messages = this.state.messages;
       messages[messages.length - 1].content.push(...formattedMsg.content);
@@ -101,7 +99,7 @@ class App extends Component {
   };
 
   receiveMessage = data => {
-    const msg = [JSON.parse(data)] // in arr so it can be combined
+    const msg = [JSON.parse(data)]; // in arr so it can be combined
 
     if (this.combineLastMessage(msg)) {
       const messages = this.state.messages;
@@ -135,8 +133,8 @@ class App extends Component {
       timestamp: Date.now(),
       author: `client-${this.state.session.client.id}`,
       content,
-      chat: this.state.session.id
-    }
+      chat: this.state.session.id,
+    };
   };
 
   /**
@@ -173,7 +171,7 @@ class App extends Component {
 
     return (
       <ThemeProvider theme={this.state.theme}>
-        <div className={`App App__${theme}`}>
+        <div className={`mnml mnml--${theme}`}>
           {this.renderChat()}
         </div>
       </ThemeProvider>

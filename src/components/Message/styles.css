@@ -1,29 +1,33 @@
-/* ======= Messenger Style ======== */
+/* Message Component */
 
-.Message__client__Messenger {
+
+/* Messenger Theme */
+
+.Message__client--messenger {
   align-self: flex-end;
-  background: #3498db;
+  background: rgb(10, 107, 239);
   border-radius: 8px 8px 8px 0;
   color: white;
   display: inline-block;
   font-size: 12px;
   letter-spacing: 1px;
-  margin: 0.5rem;
+  margin: 0;
   max-width: 95%;
-  padding: 0.5rem;
+  min-width: 160px;
+  padding: 5px 0 5px 10px;
   list-style-type: none;
 }
 
 
 /* Container box for Avatar-op + Operator__Messenger */
-.Message__operator-box__Messenger {
+.Message__operatorWrapper--messenger {
   align-items: flex-start;
   display: flex;
   justify-content: flex-end;
   margin: 0.5rem 0;
 }
 
-.Message__operator__Messenger {
+.Message__operator--messenger {
   align-self: flex-start;
   background: #e1e1e1; 
   border-radius: 8px 0px 8px 8px;
@@ -37,33 +41,34 @@
   text-align: left;
 }
 
-.Message__Avatar-op__Messenger {
+.Message__avatar--messenger {
   width: 40px;
   height: 40px;
   padding-left: 4px; 
 }
 
-/* ======= Float Style ======== */
+
+/* Float Theme */
+
 /* Top level container around an <li> message */
-.Message__box__Float{
+.Message__box--float{
     margin: 7px 0;
     padding-right: 10px; /* move msgs away from scrollbar */
 }
 
-.Message_Avatar-op__Float {
+.Message__avatar--float {
   width: 40px;
   height: 40px;
   border-radius: 20px;
 }
 
-.Message__operator-box__Float {
+.Message__operatorWrapper--float {
   align-items: flex-start;
   display: flex;
   justify-content: space-between;
 }
 
-/* A Floating message client  */
-.Message__operator__Float{
+.Message__operator--float {
   margin: 0;
   list-style: none;
   width: 160px;
@@ -78,8 +83,7 @@
   padding: 16px;
 }
 
- /* A Floating message client  */
-.Message__client__Float{
+.Message__client--float {
   margin: 0;
   padding: 16px;
   list-style: none;
@@ -94,7 +98,3 @@
   color: #ffffff;
   }
 
-
-
-
-/* ======= Sidebar Style ======== */

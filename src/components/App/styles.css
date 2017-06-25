@@ -1,38 +1,31 @@
-:root {
-  --primary-blue: rgb(52, 152, 219);
-  --primary-white: rgb(240, 240, 240);
-  --padding-main: 12px;
-}
+/* Application Component */
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
-.App {
+.mnml {
   font-size: 12px;
   font-family: 'Open Sans', Arial;
-  /*box-shadow: #dddddd 1px 1px 8px 0;
-  border-width: 0 1px 1px 0; 
-  border-style: solid;
-  border-bottom: 0;
-  border-radius: 0 3px 3px 0;
-
-  border-color: #cccccc;*/
 }
 
-.App__container {
+.mnml__container {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
-.App__Messenger {
+
+/* Messenger Theme */
+
+.mnml--messenger {
   position: fixed;
   display: flex;
   flex-direction: column;
   bottom: 0;
   right: 100px;
-  width: 260px;
-  height: 400px;
+  width: 280px;
+  height: 360px;
 }
 
 
-/* ======= Float Style ======== */
+/* Float Theme */
+

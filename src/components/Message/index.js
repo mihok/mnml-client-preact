@@ -11,33 +11,31 @@ const Message = props => {
 
   // our default message is a client message
   let message = (
-    <ul className={`Message__client__${props.theme}`}>
+    <ul className={`Message__client--${props.theme}`}>
       {content}
     </ul>
   );
 
-  // if the iterated message is an operator; override `message`
+  // Ff the iterated message is an operator; override `message`
   if (props.type === 'operator') {
     message = (
-      <div className={`Message__operator-box__${props.theme}`}>
-        <ul className={`Message__operator__${props.theme}`}>
+      <div className={`Message__operatorWrapper--${props.theme}`}>
+        <ul className={`Message__operator--${props.theme}`}>
           {content}
         </ul>
 
         <img
           alt="Operator"
-          className={`Message__Avatar-op__${props.theme}`}
+          className={`Message__avatar--${props.theme}`}
           src="http://placehold.it/40x40/"
         />
       </div>
     );
   }
 
-  // TODO: Messages sent within a period of time should be aggregated.
-
-  // incoming props, mesage.content is an array.
+  // Incoming props, mesage.content is an array.
   return (
-    <li className={`Message__box__${props.theme}`}>
+    <li className={`Message__box--${props.theme}`}>
       {message}
     </li>
   );
